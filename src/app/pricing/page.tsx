@@ -1,10 +1,8 @@
-// src/app/pricing/page.tsx
-import React from "react";
-
 export default function PricingPage() {
   return (
-    <main className="bg-background min-h-screen text-white">
-      {/* TODO: Add Pricing content here */}
+    <main className="min-h-screen pt-32 px-6 text-center">
+      <h1 className="text-6xl font-display font-bold">PRICING MODELS</h1>
+      <p className="text-white/50 mt-4">Investment Tiers Loading...</p>
     </main>
   );
 }
