@@ -13,41 +13,41 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <main className="bg-background min-h-screen text-white overflow-x-hidden selection:bg-primary selection:text-black">
-      {/* 01. Home Page - Inspiration: Design Monks */}
+    <main className="bg-background min-h-screen text-white selection:bg-primary selection:text-black">
+      {/* 01. Home Page */}
       <Hero />
 
-      {/* 02. Services - Inspiration: Design Monks AI Engine */}
+      {/* 02. Services */}
       <Services />
 
-      {/* 03. Industry Success - Inspiration: Design Monks Industry */}
+      {/* 03. Industry Success */}
       <IndustrySuccess />
 
-      {/* 04. Portfolio - Inspiration: Design Monks (A) + Levan Rho (B) */}
+      {/* 04. Portfolio */}
       <Portfolio />
 
-      {/* 05. Exclusivity - Inspiration: Original (RSI) */}
+      {/* 05. Exclusivity */}
       <Exclusivity />
 
-      {/* 06. Reviews - Inspiration: RSI Studio Dual Reels */}
+      {/* 06. Reviews */}
       <Reviews />
 
-      {/* 07. RSI vs Others - Inspiration: RSI x Design Monks */}
+      {/* 07. RSI vs Others */}
       <Comparison />
 
-      {/* 08. Pricing - Inspiration: Design Monks Pricing */}
+      {/* 08. Pricing */}
       <Pricing />
 
-      {/* 09. Managed Web Presence - Inspiration: Original (RSI) */}
+      {/* 09. Managed Web Presence */}
       <ManagedPresence />
 
-      {/* 10. Accelerate to RSI Ecosystem - Inspiration: Gigas.io */}
+      {/* 10. Ecosystem */}
       <Ecosystem />
 
-      {/* 11. FAQ - Inspiration: Design Monks FAQ */}
+      {/* 11. FAQ */}
       <FAQ />
 
-      {/* 12. Footer - Inspiration: Design Monks Footer */}
+      {/* 12. Footer */}
       <Footer />
     </main>
   );

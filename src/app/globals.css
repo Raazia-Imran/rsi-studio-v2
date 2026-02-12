@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* 1. Define your Custom Colors here */
+  /* YOUR CORE COLORS */
   --color-background: #000000;
   --color-foreground: #ffffff;
-  --color-primary: #FF7F50;      /* The Coral Pink accent */
-  --color-surface: #0A0A0A;      /* Dark surface tone */
-  
-  /* 2. Define Fonts */
+  --color-primary: #FF7F50; 
+  --color-surface: #0A0A0A;
+
+  /* NOOR'S EXACT DESIGN VARIABLES */
+  --color-rsi-black:    #050505;
+  --color-rsi-charcoal: #0a0a0a;
+  --color-rsi-coral:    #FF6B6B; /* Her specific pink */
+  --color-rsi-white:    #F4F4F5;
+  --color-rsi-glass:    rgba(255, 255, 255, 0.03);
+
+  /* Fonts */
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Inter", sans-serif;
-
-  /* 3. Animation Defaults */
-  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Base Styles */
@@ -24,9 +28,14 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  
-  /* This applies the selection color globally */
-  @apply antialiased selection:bg-primary selection:text-black;
+  overflow-x: hidden; /* Prevents scrollbar jumping */
+}
+
+/* HIDE DEFAULT CURSOR (Required for her custom cursor) */
+@media (min-width: 768px) {
+  body, a, button, input {
+    cursor: none !important;
+  }
 }
 
 /* Custom Utilities for the "Inverse" white sections */
@@ -36,12 +45,9 @@ body {
     color: #000000;
   }
   
-  /* Hide scrollbar for clean UI */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .glass-panel {
+    background-color: var(--color-rsi-glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
