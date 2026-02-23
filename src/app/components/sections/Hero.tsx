@@ -204,34 +204,99 @@
 // }
 
 "use client";
-import { motion } from "framer-motion";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Monitor,
+  Smartphone,
+  Code2,
+  Database,
+  ShieldCheck,
+  Globe,
+  LucideIcon,
+} from "lucide-react";
+
+interface FloatingIconProps {
+  Icon: LucideIcon;
+  top: string;
+  left: string;
+  delay: number;
+  index: number;
+}
+
+// Floating icons configuration
+const FLOATING_ICONS: FloatingIconProps[] = [
+  { Icon: Monitor, top: "20%", left: "15%", delay: 0, index: 0 },
+  { Icon: Smartphone, top: "60%", left: "80%", delay: 1, index: 1 },
+  { Icon: Code2, top: "25%", left: "75%", delay: 2, index: 2 },
+  { Icon: Database, top: "75%", left: "20%", delay: 1.5, index: 3 },
+  { Icon: ShieldCheck, top: "50%", left: "10%", delay: 0.5, index: 4 },
+  { Icon: Globe, top: "45%", left: "88%", delay: 2.5, index: 5 },
+];
+
+// Floating icon component
+const FloatingIcon = ({ Icon, top, left, delay, index }: FloatingIconProps) => (
+  <motion.div
+    className="absolute z-10 pointer-events-none"
+    style={{ top, left }}
+    animate={{ y: [0, -20, 0] }}
+    transition={{
+      duration: 6 + index,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+  >
+    <div className="relative p-3 rounded-xl border border-white/10 bg-[var(--color-rsi-glass)] backdrop-blur-md shadow-[0_0_15px_rgba(255,107,107,0.1)]">
+      <Icon size={22} className="text-[var(--color-rsi-coral)]" />
+    </div>
+  </motion.div>
+);
+
+// Hero component
 export default function Hero() {
+  const targetRef = useRef<HTMLElement>(null);
+
+  // Animate text opacity & y on scroll
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
   return (
-    <section className="h-screen flex flex-col items-center justify-center text-center px-6">
-      <motion.h1
-        initial={{ y: 40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="text-[15vw] md:text-[10vw] font-display font-bold leading-none tracking-tighter mb-8"
+    <section
+      ref={targetRef}
+      className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden"
+    >
+      {/* Floating icons */}
+      {FLOATING_ICONS.map((item, i) => (
+        <FloatingIcon key={i} {...item} />
+      ))}
+
+      {/* Main Hero text & button */}
+      <motion.div
+        style={{ opacity, y }}
+        className="z-50 flex flex-col items-center relative"
       >
-        RSI STUDIO
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="text-xs md:text-sm uppercase tracking-[0.8em] font-bold text-primary mb-12"
-      >
-        Perfection in Pixels
-      </motion.p>
-      <motion.button
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="px-12 py-4 bg-white text-black rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-primary transition-colors duration-300"
-      >
-        Start Project
-      </motion.button>
+        <h1 className="text-[15vw] md:text-[10vw] font-display font-bold leading-none tracking-tighter mb-8 text-white">
+          RSI STUDIO
+        </h1>
+        <p className="text-xs md:text-sm uppercase tracking-[0.8em] font-bold text-primary mb-12">
+          Perfection in Pixels
+        </p>
+        <motion.button
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="px-12 py-4 bg-white text-black rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-primary transition-colors duration-300"
+        >
+          Start Project
+        </motion.button>
+      </motion.div>
     </section>
   );
 }

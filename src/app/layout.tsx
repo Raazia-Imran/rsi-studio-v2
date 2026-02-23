@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
-import Navbar from "@/components/layout/Navbar"; // Make sure this path exists
+import Navbar from "@/components/layout/FloatingNav"; // Make sure this path exists
 import Footer from "@/components/sections/Footer"; // Import the new Footer
 
 const spaceGrotesk = Space_Grotesk({

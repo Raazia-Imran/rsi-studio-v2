@@ -9,7 +9,7 @@ import {
   Factory,
   ArrowUpRight,
 } from "lucide-react";
-import Navbar from "@/components/layout/Navbar"; // Ensure path is correct
+import Navbar from "@/components/layout/FloatingNav"; // Ensure path is correct
 import Footer from "@/components/sections/Footer";
 
 // Data with UNIQUE GRADIENTS for each industry (The "Colorful" Request)

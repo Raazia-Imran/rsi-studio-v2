@@ -41,3 +41,27 @@ body {
     color: #000000;
   }
 }
+
+/* Custom "Design Monks" scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF6B6B;
+  border-radius: 10px;
+}
+
+/* Glassmorphism utility for sections */
+.glass-section {
+  background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+
+html, body, #__next {
+  height: 100%;
+  overflow: hidden; /* Lenis handles scroll now */
+}
