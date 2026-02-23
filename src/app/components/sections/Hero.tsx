@@ -203,6 +203,104 @@
 //   );
 // }
 
+// "use client";
+
+// import { useRef } from "react";
+// import { motion, useScroll, useTransform } from "framer-motion";
+// import {
+//   Monitor,
+//   Smartphone,
+//   Code2,
+//   Database,
+//   ShieldCheck,
+//   Globe,
+//   LucideIcon,
+// } from "lucide-react";
+
+// interface FloatingIconProps {
+//   Icon: LucideIcon;
+//   top: string;
+//   left: string;
+//   delay: number;
+//   index: number;
+// }
+
+// // Floating icons configuration
+// const FLOATING_ICONS: FloatingIconProps[] = [
+//   { Icon: Monitor, top: "20%", left: "15%", delay: 0, index: 0 },
+//   { Icon: Smartphone, top: "60%", left: "80%", delay: 1, index: 1 },
+//   { Icon: Code2, top: "25%", left: "75%", delay: 2, index: 2 },
+//   { Icon: Database, top: "75%", left: "20%", delay: 1.5, index: 3 },
+//   { Icon: ShieldCheck, top: "50%", left: "10%", delay: 0.5, index: 4 },
+//   { Icon: Globe, top: "45%", left: "88%", delay: 2.5, index: 5 },
+// ];
+
+// // Floating icon component
+// const FloatingIcon = ({ Icon, top, left, delay, index }: FloatingIconProps) => (
+//   <motion.div
+//     className="absolute z-10 pointer-events-none"
+//     style={{ top, left }}
+//     animate={{ y: [0, -20, 0] }}
+//     transition={{
+//       duration: 6 + index,
+//       repeat: Infinity,
+//       ease: "easeInOut",
+//       delay,
+//     }}
+//   >
+//     <div className="relative p-3 rounded-xl border border-white/10 bg-[var(--color-rsi-glass)] backdrop-blur-md shadow-[0_0_15px_rgba(255,107,107,0.1)]">
+//       <Icon size={22} className="text-[var(--color-rsi-coral)]" />
+//     </div>
+//   </motion.div>
+// );
+
+// // Hero component
+// export default function Hero() {
+//   const targetRef = useRef<HTMLElement>(null);
+
+//   // Animate text opacity & y on scroll
+//   const { scrollYProgress } = useScroll({
+//     target: targetRef,
+//     offset: ["start start", "end start"],
+//   });
+
+//   const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+//   const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
+//   return (
+//     <section
+//       ref={targetRef}
+//       className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden"
+//     >
+//       {/* Floating icons */}
+//       {FLOATING_ICONS.map((item, i) => (
+//         <FloatingIcon key={i} {...item} />
+//       ))}
+
+//       {/* Main Hero text & button */}
+//       <motion.div
+//         style={{ opacity, y }}
+//         className="z-50 flex flex-col items-center relative"
+//       >
+//         <h1 className="text-[15vw] md:text-[10vw] font-display font-bold leading-none tracking-tighter mb-8 text-white">
+//           RSI STUDIO
+//         </h1>
+//         <p className="text-xs md:text-sm uppercase tracking-[0.8em] font-bold text-primary mb-12">
+//           Perfection in Pixels
+//         </p>
+//         <motion.button
+//           initial={{ scale: 0.8, opacity: 0 }}
+//           animate={{ scale: 1, opacity: 1 }}
+//           transition={{ delay: 0.8 }}
+//           className="px-12 py-4 bg-white text-black rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-primary transition-colors duration-300"
+//         >
+//           Start Project
+//         </motion.button>
+//       </motion.div>
+//     </section>
+//   );
+// }
+
 "use client";
 
 import { useRef } from "react";
@@ -225,7 +323,6 @@ interface FloatingIconProps {
   index: number;
 }
 
-// Floating icons configuration
 const FLOATING_ICONS: FloatingIconProps[] = [
   { Icon: Monitor, top: "20%", left: "15%", delay: 0, index: 0 },
   { Icon: Smartphone, top: "60%", left: "80%", delay: 1, index: 1 },
@@ -235,10 +332,17 @@ const FLOATING_ICONS: FloatingIconProps[] = [
   { Icon: Globe, top: "45%", left: "88%", delay: 2.5, index: 5 },
 ];
 
-// Floating icon component
+// Configuration for background mobile frames
+const MOBILE_FRAMES = [
+  { top: "15%", left: "-5%", rotate: -15, delay: 0 },
+  { top: "65%", left: "5%", rotate: 10, delay: 2 },
+  { top: "10%", left: "85%", rotate: 20, delay: 1 },
+  { top: "70%", left: "75%", rotate: -10, delay: 3 },
+];
+
 const FloatingIcon = ({ Icon, top, left, delay, index }: FloatingIconProps) => (
   <motion.div
-    className="absolute z-10 pointer-events-none"
+    className="absolute z-20 pointer-events-none"
     style={{ top, left }}
     animate={{ y: [0, -20, 0] }}
     transition={{
@@ -254,49 +358,94 @@ const FloatingIcon = ({ Icon, top, left, delay, index }: FloatingIconProps) => (
   </motion.div>
 );
 
-// Hero component
+// Moving Mobile Frame Component
+const MovingFrame = ({ top, left, rotate, delay }: any) => (
+  <motion.div
+    className="absolute z-0 pointer-events-none opacity-20"
+    style={{ top, left, rotate: `${rotate}deg` }}
+    animate={{
+      y: [0, -40, 0],
+      rotate: [rotate, rotate + 5, rotate],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+  >
+    <div className="w-48 h-[400px] border-4 border-white/10 rounded-[3rem] bg-white/5 relative overflow-hidden shadow-2xl">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-4 bg-white/10 rounded-full" />
+      <div className="mt-16 px-4 space-y-4">
+        <div className="h-4 w-2/3 bg-white/10 rounded" />
+        <div className="h-32 w-full bg-white/5 rounded-xl" />
+        <div className="h-4 w-full bg-white/10 rounded" />
+      </div>
+    </div>
+  </motion.div>
+);
+
 export default function Hero() {
   const targetRef = useRef<HTMLElement>(null);
 
-  // Animate text opacity & y on scroll
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end start"],
   });
 
   const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const frameParallax = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
     <section
       ref={targetRef}
       className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Floating icons */}
+      {/* Background Moving Frames (Z-0) */}
+      <motion.div style={{ y: frameParallax }} className="absolute inset-0">
+        {MOBILE_FRAMES.map((frame, i) => (
+          <MovingFrame key={i} {...frame} />
+        ))}
+      </motion.div>
+
+      {/* Floating Icons (Z-20) */}
       {FLOATING_ICONS.map((item, i) => (
         <FloatingIcon key={i} {...item} />
       ))}
 
-      {/* Main Hero text & button */}
+      {/* Main Content (Z-50) */}
       <motion.div
         style={{ opacity, y }}
         className="z-50 flex flex-col items-center relative"
       >
-        <h1 className="text-[15vw] md:text-[10vw] font-display font-bold leading-none tracking-tighter mb-8 text-white">
+        <h1
+          className="text-[15vw] md:text-[10vw] font-display font-bold leading-none tracking-tighter mb-8 text-white select-none"
+          style={{ textShadow: "0 0 30px rgba(255, 107, 107, 0.3)" }}
+        >
           RSI STUDIO
         </h1>
-        <p className="text-xs md:text-sm uppercase tracking-[0.8em] font-bold text-primary mb-12">
-          Perfection in Pixels
-        </p>
+
+        <div className="flex items-center gap-6 mb-12">
+          <div className="h-[1px] w-12 bg-[var(--color-rsi-coral)]" />
+          <p className="text-white text-[10px] md:text-xs tracking-[0.6em] uppercase font-bold">
+            Perfection in Pixels
+          </p>
+          <div className="h-[1px] w-12 bg-[var(--color-rsi-coral)]" />
+        </div>
+
         <motion.button
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="px-12 py-4 bg-white text-black rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-primary transition-colors duration-300"
+          className="px-12 py-4 bg-white text-black rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-[var(--color-rsi-coral)] hover:text-white transition-all duration-500 hover:scale-105"
         >
           Start Project
         </motion.button>
       </motion.div>
+
+      {/* Subtle bottom gradient to blend into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-40 pointer-events-none" />
     </section>
   );
 }

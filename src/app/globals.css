@@ -59,9 +59,3 @@ body {
   background: linear-gradient(to bottom, rgba(255,255,255,0.02), transparent);
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-
-
-html, body, #__next {
-  height: 100%;
-  overflow: hidden; /* Lenis handles scroll now */
-}
