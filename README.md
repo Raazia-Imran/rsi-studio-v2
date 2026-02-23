@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# 🌌 RSI STUDIO v2
 
+### **Perfection in Pixels — Engineering Digital Dominance**
+
+RSI Studio is a high-end digital engineering workshop that builds visual systems for the top 1% of ambitious brands. This project represents **Version 2.0** of our architectural engine, featuring cinematic animations, architectural depth, and absolute aesthetic authority.
+
+---
+
+## 🚀 The System Experience
+
+Our interface is built on a "System-Centered" layout inspired by world-class design discipline:
+
+* **Cinematic Hero**: Floating glass icons and moving architectural frames with a deep parallax scroll.
+* **Stacking Card Services**: A core-engine layout where service modules stack dynamically as you explore our expertise.
+* **Industry Success Grid**: High-stakes sector visualization for Private Yachts, Aviation, Real Estate, and more.
+* **Dual Portfolio System**: A high-contrast "Selected Systems" section paired with a futuristic "Visual System" infinite slideshow.
+* **Warp Speed Ecosystem**: A space-travel style transition into the RSI onboarding flow.
+* **Dual Reel Reviews**: A paired-motion social proof system upgraded for digital dominance.
+
+---
+
+## 🛠 Tech Stack & Architecture
+
+This engine is built with the latest high-performance modules:
+
+| Module | Implementation |
+| --- | --- |
+| **Framework** | Next.js 16+ (App Router) |
+| **Core Logic** | React 19 (Server & Client Components) |
+| **Styling** | Tailwind CSS 4.0 (Modern @theme variables) |
+| **Motion Engine** | Framer Motion 12 (Advanced Parallax & Scroll Triggers) |
+| **Icons** | Lucide React (Minimalist Technical Icons) |
+| **Typography** | Space Grotesk (Display) & Inter (Sans) |
+
+---
+
+## 📦 Installation & Initialization
+
+To initialize the RSI system locally:
+
+1. **Clone the Repository**:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/raazia-imran/rsi-studio-v2.git
+cd rsi-studio-v2
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install Dependencies**:
+```bash
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+3. **Run Development Environment**:
+```bash
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+4. **Production Build**:
+```bash
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+---
+
+## 📂 System Architecture
+
+```text
+src/
+├── app/
+│   ├── components/
+│   │   ├── layout/        # Floating Nav & Global Shell
+│   │   ├── sections/      # Hero, Services, Portfolio, etc.
+│   │   └── ui/            # Cursor, SmoothScroll, BackToTop
+│   ├── globals.css        # Design Variables & Glassmorphism
+│   ├── layout.tsx         # Global Root Wrapper
+│   └── page.tsx           # Master Landing Assembly
+└── tailwind.config.ts     # Visual Token Configuration
+
+```
+
+---
+
+## ⚖️ Exclusivity Declaration
+
+We do not build for everyone. We engineer digital assets for the **top 1% of ambitious brands**. Every asset in this repository is built with **absolute aesthetic authority** and **precision engineering**.
+
+**© 2026 RSI Studio — All Systems Go.**
