@@ -1,25 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  /* YOUR CORE COLORS */
   --color-background: #000000;
   --color-foreground: #ffffff;
-  --color-primary: #FF7F50; 
+  --color-primary: #FF6B6B; 
   --color-surface: #0A0A0A;
 
-  /* NOOR'S EXACT DESIGN VARIABLES */
+  /* Design Variables */
   --color-rsi-black:    #050505;
   --color-rsi-charcoal: #0a0a0a;
-  --color-rsi-coral:    #FF6B6B; /* Her specific pink */
+  --color-rsi-coral:    #FF6B6B;
   --color-rsi-white:    #F4F4F5;
   --color-rsi-glass:    rgba(255, 255, 255, 0.03);
 
-  /* Fonts */
   --font-display: "Space Grotesk", sans-serif;
   --font-sans: "Inter", sans-serif;
 }
 
-/* Base Styles */
 :root {
   color-scheme: dark;
 }
@@ -28,26 +25,19 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  overflow-x: hidden; /* Prevents scrollbar jumping */
+  overflow-x: hidden;
 }
 
-/* HIDE DEFAULT CURSOR (Required for her custom cursor) */
+/* Custom Cursor Requirements */
 @media (min-width: 768px) {
-  body, a, button, input {
+  body, a, button {
     cursor: none !important;
   }
 }
 
-/* Custom Utilities for the "Inverse" white sections */
 @layer utilities {
   .section-inverse {
     background-color: #ffffff;
     color: #000000;
-  }
-  
-  .glass-panel {
-    background-color: var(--color-rsi-glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }

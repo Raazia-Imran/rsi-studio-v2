@@ -5,13 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#000000", // Deep space black
-        primary: "#FF7F50", // Coral pink
-        surface: "#0A0A0A", // Near-absolute dark tones
-        ecosystem: "#6366f1", // Gigas.io-style transition blue [cite: 20, 215]
+        background: "#000000",
+        primary: "#FF6B6B",
+        surface: "#0A0A0A",
       },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"], // Minimalist futurism [cite: 20]
+        display: ["var(--font-display)", "sans-serif"],
       },
     },
   },

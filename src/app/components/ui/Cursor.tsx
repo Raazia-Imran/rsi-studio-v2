@@ -1,71 +1,23 @@
-
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Cursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const defaultColor = "#FF6B6B";
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
-        const target = e.target as HTMLElement;
-        const section = target.closest("[data-cursor-color]");
-        const newColor = section
-          ? section.getAttribute("data-cursor-color")
-          : defaultColor;
-        cursorRef.current.style.setProperty("--cursor-color", newColor);
-      }
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
     };
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const isClickable =
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.tagName === "INPUT" ||
-        target.closest("button") ||
-        target.closest("a") ||
-        target.classList.contains("cursor-pointer");
-
-      setIsHovering(!!isClickable);
-    };
-
-    window.addEventListener("mousemove", moveCursor);
-    window.addEventListener("mouseover", handleMouseOver);
-
-    return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      window.removeEventListener("mouseover", handleMouseOver);
-    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999]"
-      style={
-        {
-          width: isHovering ? "60px" : "20px",
-          height: isHovering ? "60px" : "20px",
-
-          marginLeft: isHovering ? "-20px" : "0px",
-          marginTop: isHovering ? "-20px" : "0px",
-          backgroundColor: isHovering
-            ? "var(--cursor-color)"
-            : "var(--cursor-color)",
-
-          boxShadow: isHovering
-            ? "0 0 50px 10px var(--cursor-color)"
-            : "0 0 15px 2px var(--cursor-color)",
-
-          opacity: isHovering ? 0.3 : 1,
-
-          transition:
-            "width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s, opacity 0.2s",
-        } as React.CSSProperties
-      }
+    <motion.div
+      className="fixed top-0 left-0 w-8 h-8 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+      animate={{ x: mousePos.x - 16, y: mousePos.y - 16 }}
+      transition={{ type: "spring", damping: 25, stiffness: 250 }}
     />
   );
 }
