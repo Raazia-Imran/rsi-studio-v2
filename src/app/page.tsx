@@ -8,6 +8,8 @@ import Comparison from "@/components/sections/Comparison";
 import Pricing from "@/components/sections/Pricing";
 import Ecosystem from "@/components/sections/Ecosystem";
 import FAQ from "@/components/sections/FAQ";
+import ManagedPresence from "./components/sections/ManagePresence";
+import AiCards from "./components/sections/ManagePresence";
 
 export default function Home() {
   return (
@@ -20,6 +22,7 @@ export default function Home() {
       <Reviews />
       <Comparison />
       <Pricing />
+      <AiCards/>
       <Ecosystem />
       <FAQ />
     </>
