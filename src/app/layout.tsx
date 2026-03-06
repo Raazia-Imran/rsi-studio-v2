@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
-import Navbar from "@/components/layout/FloatingNav"; // Make sure this path exists
-import Footer from "@/components/sections/Footer"; // Import the new Footer
+import Navbar from "@/components/layout/FloatingNav"; // Uses the simplified FloatingNav
+import Footer from "@/components/sections/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -30,14 +30,14 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-black text-white`}
       >
-        {/* Global Components that persist across all pages */}
+        {/* Global Components */}
         <Cursor />
         <Navbar />
 
-        {/* The Page Content */}
+        {/* This is where your page.tsx content gets injected */}
         {children}
 
-        {/* Global Footer (One for All) */}
+        {/* Global Footer */}
         <Footer />
       </body>
     </html>
