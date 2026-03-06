@@ -15,28 +15,12 @@ const locations: Location[] = [
 export default function Footer() {
   return (
     <footer className="relative bg-[#050505] text-white overflow-hidden pt-32">
-
-      {/* ===== Earth Background ===== */}
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-20"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1614732414444-096e5f1122d5?q=80&w=2070&auto=format&fit=crop')",
-        }}
-      />
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black" />
-
-      {/* ===== Subtle Noise Overlay ===== */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url('https://grainy-gradients.vercel.app/noise.svg')",
-        }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-
         {/* ===== Global Presence ===== */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-semibold">
@@ -66,21 +50,23 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-t border-white/10 pt-16 mb-24">
           {[
             {
-              title: "Important Links",
-              items: ["Home", "About Us", "Portfolio", "Contact"],
+              title: "Quick Links",
+              items: ["Home", "Services", "Industries", "Work","Pricing","Ecosystem"],
             },
             {
               title: "Services",
               items: [
-                "Web Development",
-                "UI/UX Design",
-                "Mobile Apps",
-                "SEO & Marketing",
+                "Web Design",
+                "Web DEvelopment",
+                "Custom Software",
+                "SEO Strategy",
+                "Monthly Presence",
+                "Web Automations"
               ],
             },
             {
               title: "Industries",
-              items: ["FinTech", "Healthcare", "E-Commerce", "Real Estate"],
+              items: ["Private Yacht", "Aviation", "Startup", "Real Estate","Manufacturing"],
             },
             {
               title: "Company",
@@ -104,21 +90,36 @@ export default function Footer() {
         </div>
 
         {/* ===== Partners Row ===== */}
-        <div className="flex flex-wrap justify-center gap-16 text-center mb-24">
-          {[
-            { name: "Framer", sub: "Professional Partner" },
-            { name: "Webflow", sub: "Professional Partner" },
-            { name: "Behance", sub: "Top Team On Behance" },
-            { name: "Dribbble", sub: "Top Team On Dribbble" },
-            { name: "Clutch", sub: "Reviewed On ★★★★★" },
-            { name: "Google", sub: "Reviewed On ★★★★★" },
-          ].map((item, i) => (
-            <div key={i} className="space-y-2">
-              <div className="text-2xl font-semibold">{item.name}</div>
-              <p className="text-gray-400 text-sm">{item.sub}</p>
-            </div>
-          ))}
-        </div>
+<div className="flex flex-wrap justify-center gap-16 text-center mb-24">
+  {[
+    { name: "Organic Care", sub: "Professional Partner", logo: "/logos/organic-care.png" },
+    { name: "RSI One", sub: "Professional Partner", logo: "/logos/rsi-one.png" },
+    { name: "Nxtlvl Closers", sub: "Professional Partner", logo: "/logos/nxtlvl-closers.png" },
+    { name: "Nashad Group", sub: "Professional Partner", logo: "/logos/nashad-group.png" },
+    { name: "Shell", sub: "Professional Partner", logo: "/Shell_logo.svg.png" },
+    { name: "Fauji Fertilizers", sub: "Professional Partner", logo: "/Fauji_Fertilizers.png" },
+    { name: "Askari Bank", sub: "Professional Partner", logo: "/Askari-bank-logo.png" },
+    { name: "Saqafat Bakery", sub: "Professional Partner", logo: "Saqafar_backery.png" },
+    { name: "Shofipy", sub: "Professional Partner", logo: "/Shopify_logo.png" },
+    { name: "Cameco", sub: "Professional Partner", logo: "/Cameco.png" },
+    { name: "Nutrien", sub: "Professional Partner", logo: "/Nutrien.png" },
+    { name: "Indus Group", sub: "Professional Partner", logo: "/logos/indus.png" },
+    { name: "Azure Yachts", sub: "Professional Partner", logo: "/logos/azure-yachts.png" },
+    { name: "Black Air", sub: "Professional Partner", logo: "/logos/black-air.png" },
+    { name: "Gigas Software", sub: "Professional Partner", logo: "/logos/gigas.png" },
+    { name: "Royal Aviation", sub: "Professional Partner", logo: "/logos/royal-aviation.png" }
+  ].map((item, i) => (
+    <div key={i} className="space-y-2 flex flex-col items-center">
+      <img
+        src={item.logo}
+        alt={`${item.name} Logo`}
+        className="w-24 h-24 object-contain" // adjust size as needed
+      />
+      <div className="text-2xl font-semibold">{item.name}</div>
+      <p className="text-gray-400 text-sm">{item.sub}</p>
+    </div>
+  ))}
+</div>
 
         {/* ===== Legal Section ===== */}
         <div className="text-center mb-24">
@@ -137,16 +138,18 @@ export default function Footer() {
 
       </div>
 
-      {/* ===== Massive RSI Studio Branding ===== */}
+     {/* ===== Massive RSI Studio Branding ===== */}
 <div className="relative h-[180px] md:h-[220px] lg:h-[260px] overflow-hidden flex justify-center items-end">
 
-  {/* Red Glow Behind Text */}
-  <div className="absolute bottom-0 w-[80%] h-32 blur-3xl bg-red-600/40 rounded-full pointer-events-none" />
+  {/* Coral Pink Glow Layers */}
+  <div className="absolute bottom-0 w-[90%] h-36 blur-3xl bg-[#ff6f61]/40 rounded-full pointer-events-none"></div>
+  <div className="absolute bottom-6 w-[70%] h-28 blur-2xl bg-[#ff7f73]/40 rounded-full pointer-events-none"></div>
+  <div className="absolute bottom-10 w-[50%] h-20 blur-xl bg-[#ff8f85]/40 rounded-full pointer-events-none"></div>
 
   {/* RSI Studio Text */}
   <h1
     className="
-       relative
+      relative
       font-black
       uppercase
       tracking-tight

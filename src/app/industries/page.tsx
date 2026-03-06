@@ -127,8 +127,6 @@ export default function IndustriesPage() {
           ))}
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }
