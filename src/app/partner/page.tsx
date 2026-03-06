@@ -21,22 +21,30 @@ const PARTNER_TYPES = [
 ];
 
 export default function PartnerPage() {
+  const handlePartnerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(
+      "Partnership application received. Our team will review your proposal.",
+    );
+  };
+
   return (
-    <main className="bg-black min-h-screen pt-32 pb-40 px-6 text-white selection:bg-[#FF6B6B] selection:text-black">
+    <main className="bg-black min-h-screen pt-32 pb-40 px-6 text-white">
       <section className="container mx-auto max-w-4xl text-center mb-24">
         <h2 className="text-[#FF6B6B] text-xs font-mono uppercase tracking-[0.3em] mb-6">
           Collaborate
         </h2>
+
         <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter mb-8">
           BECOME A <span className="text-white/40">PARTNER</span>
         </h1>
+
         <p className="text-white/50 text-lg font-light leading-relaxed">
           We align with visionaries. Select your partnership model below to
           initiate the application process.
         </p>
       </section>
 
-      {/* Partnership Models */}
       <section className="container mx-auto max-w-5xl grid md:grid-cols-3 gap-6 mb-32">
         {PARTNER_TYPES.map((type, i) => (
           <motion.div
@@ -50,63 +58,47 @@ export default function PartnerPage() {
             <span className="font-mono text-xs opacity-50 block mb-4">
               /0{i + 1}
             </span>
+
             <h3 className="text-2xl font-display font-bold mb-4">
               {type.title}
             </h3>
+
             <p className="text-sm opacity-70 leading-relaxed">{type.desc}</p>
           </motion.div>
         ))}
       </section>
 
-      {/* Application Form */}
       <section className="container mx-auto max-w-2xl bg-[#050505] border border-white/10 rounded-3xl p-8 md:p-12">
         <h3 className="text-3xl font-display font-bold mb-8 text-center">
           Partnership Application
         </h3>
-        <form className="space-y-6 text-sm">
+
+        <form onSubmit={handlePartnerSubmit} className="space-y-6 text-sm">
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className="uppercase tracking-widest text-[10px] text-white/50">
-                Full Name
-              </label>
-              <input
-                type="text"
-                className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#FF6B6B] transition-colors"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="uppercase tracking-widest text-[10px] text-white/50">
-                Company / Entity
-              </label>
-              <input
-                type="text"
-                className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#FF6B6B] transition-colors"
-              />
-            </div>
+            <input
+              required
+              placeholder="Full Name"
+              className="bg-black border border-white/10 rounded-lg px-4 py-3"
+            />
+
+            <input
+              required
+              placeholder="Company"
+              className="bg-black border border-white/10 rounded-lg px-4 py-3"
+            />
           </div>
 
-          <div className="space-y-2">
-            <label className="uppercase tracking-widest text-[10px] text-white/50">
-              Partnership Type
-            </label>
-            <select className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#FF6B6B] transition-colors text-white/70">
-              <option>Strategic Design Partner</option>
-              <option>Growth Partner</option>
-              <option>Vendor Partnership</option>
-            </select>
-          </div>
+          <textarea
+            required
+            rows={4}
+            placeholder="Proposal Brief"
+            className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 resize-none"
+          />
 
-          <div className="space-y-2">
-            <label className="uppercase tracking-widest text-[10px] text-white/50">
-              Proposal Brief
-            </label>
-            <textarea
-              rows={4}
-              className="w-full bg-black border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-[#FF6B6B] transition-colors resize-none"
-            ></textarea>
-          </div>
-
-          <button className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#FF6B6B] hover:text-white transition-colors mt-4">
+          <button
+            type="submit"
+            className="w-full py-4 bg-white text-black font-bold uppercase tracking-widest rounded-lg hover:bg-[#FF6B6B] hover:text-white transition-colors"
+          >
             Submit Application
           </button>
         </form>
