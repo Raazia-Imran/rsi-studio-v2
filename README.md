@@ -176,6 +176,3 @@ All new UI components must strictly adhere to these design tokens:
 ```
 
 
-
-Do you want me to do that next?
-```
