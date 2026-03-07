@@ -1,153 +1,181 @@
+
 # 🚀 RSI Studio V2
 
 > **Enterprise-grade Digital Architecture & High-End UX/UI Ecosystem**
 
-RSI Studio V2 is a premium, high-ticket digital agency platform engineered with Next.js 16, React 19, and Tailwind CSS v4. It features strict Software Requirements Specification (SRS) compliance, cinematic Framer Motion physics, and custom multi-theme crossover architectures.
+RSI Studio V2 is the flagship digital presence for the RSI brand. Engineered as a high-ticket agency platform, it enforces strict Software Requirements Specification (SRS) compliance to deliver a premium, urgency-free, and mathematically precise user experience. 
+
+This repository abandons traditional grid layouts and templated design in favor of custom SVG engineering, Framer Motion physics, and advanced React 19 / Next.js 16 architectures.
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
-
-Built on the bleeding edge of modern web development:
-
-* **Core:** Next.js 16.1.6 (App Router) & React 19.2.3
-* **Styling:** Tailwind CSS v4
-* **Animation Engine:** Framer Motion v12.31
-* **Smooth Scrolling:** Lenis (`@studio-freight/lenis`)
-* **Infinite Marquees:** `react-fast-marquee`
-* **Iconography:** `lucide-react`
-* **Type Safety:** TypeScript v5
+## 📑 Table of Contents
+1. [Tech Stack & Engine](#-tech-stack--engine)
+2. [Core System Architecture](#-core-system-architecture)
+3. [Feature Deep-Dive & SRS Compliance](#-feature-deep-dive--srs-compliance)
+4. [Routing & Directory Structure](#-routing--directory-structure)
+5. [Local Development](#-local-development)
+6. [Team Git Workflow](#-team-git-workflow)
+7. [Brand & UI Guidelines](#-brand--ui-guidelines)
 
 ---
 
-## 🏛️ Core Architecture & Features
+## 🛠️ Tech Stack & Engine
 
-### 1. Advanced Navigation System (Dual-Layer)
+Built on the bleeding edge of modern web development to ensure zero-latency routing and cinematic rendering.
 
-* **Primary Dock:** A floating, glassmorphism bottom pill restricted to core conversion routes (Home, Pricing, Testimonials, Ecosystem CTA).
-* **Secondary Drawer:** A cinematic right-side off-canvas slide-out menu that houses all 9 extended routes, preventing UI viewport clutter.
-
----
-
-### 2. The "OG Puzzle" Testimonial Reel
-
-* **Mathematical Masonry Grid:** A fully interlocking, dual-row sliding puzzle grid powered by exact CSS Grid spans (`col-span-2 row-span-2`).
-* **SRS Data Compliance:** Strictly features 12 reviews (Six 5-stars, Four 4-stars, One 3-star, One 1-star Waitlist flex).
-* **Viewport Constraints:** Scaled to ensure exactly 8 geometric cards are visible on standard 1080p/4k displays at any given time.
+* **Framework:** [Next.js 16.1.6](https://nextjs.org/) (App Router)
+* **Library:** [React 19.2.3](https://react.dev/)
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) (Utility-first, CSS variable driven)
+* **Animation Physics:** [Framer Motion v12.31.1](https://www.framer.com/motion/) (Hardware-accelerated inertia and orchestrations)
+* **Smooth Scrolling:** [`@studio-freight/lenis`](https://github.com/darkroomengineering/lenis) (Custom easing curves for page scroll)
+* **Infinite Reels:** `react-fast-marquee` (Used for seamless, unbreaking horizontal loops)
+* **Iconography:** `lucide-react` (Consistent, clean stroke icons)
+* **Language:** TypeScript v5 (Strict type safety across all components)
 
 ---
 
-### 3. Transparent Pricing & Connected Node UI
+## 🏛️ Core System Architecture
 
-* **Design Monks Layout:** Clean, urgency-free pricing tiers ($2,000, $5,000, $10,000) establishing high-ticket authority.
-* **Node Architecture:** The "$500/Month Managed Presence" add-on is visualized as a central hub connected via glowing, flowing SVG data wires to categorized sub-nodes (Growth, Operations, Security).
-* **Warp Speed Transition:** Features a mathematical 120-beam light-speed warp animation when routing to the Ecosystem portal.
+### 1. Dual-Layer Navigation System (`FloatingNav.tsx`)
+To prevent UI viewport clutter and maximize the immersive background elements, navigation is strictly divided into two tiers:
+* **Primary Nav (The Dock):** A floating bottom pill utilizing `backdrop-blur-3xl`. It strictly houses core conversion routes: *Home, Testimonials, Pricing, and the Ecosystem CTA.*
+* **Secondary Nav (The Drawer):** A cinematic right-side off-canvas slide-out menu that houses the remaining 9 extended routes. Uses staggered Framer Motion fade-ins and a dark backdrop-blur overlay to maintain user context.
 
----
-
-### 4. Dual-Theme Crossover Engine (Team Page)
-
-* Seamlessly blends two distinct corporate identities: **RSI ONE** (Beige/Black/White) and **RSI Studio** (Coral Pink/Black/White).
-* Stylistic rules uniquely map to 5 distinct department tiers (Founders, Backend, Frontend, Management, Sales) representing 17 team members.
-
----
-
-### 5. RSI Library (Blogging Portal)
-
-* A from-scratch, white-dominant knowledge base.
-* Features a bespoke zero-dependency SVG hero section (Bookshelf / Center Node / 2D Aerospace schematic).
-* Integrated layout for published R&D articles, ongoing internal research, and an Employee Portal login.
+### 2. Dual-Theme Crossover Engine (`/team`)
+The Team architecture seamlessly blends two distinct corporate identities into a single scrolling experience:
+* **RSI ONE Aesthetic:** Beige (`#E5D9C5`), Black, and White.
+* **RSI Studio Aesthetic:** Coral Pink (`#FF6B6B`), Black, and Deep Charcoal.
+* **Logic:** Stylistic rules are strictly mapped to 5 distinct department tiers (Founders, Backend, Frontend, Management, Sales) representing all 17 team members.
 
 ---
 
-## 💻 Getting Started
+## 🔍 Feature Deep-Dive & SRS Compliance
 
-### Prerequisites
+### The "OG Puzzle" Testimonial Reel
+We engineered a true mathematical masonry sliding block puzzle.
+* **Logic:** Instead of standard grids, we utilize variable widths/heights (`small`, `medium`, `large`) paired with flexbox `items-center`. As the two opposite-moving reels slide past each other, the varying heights naturally interlock without breaking layout.
+* **Data Compliance:** Strictly features 12 hardcoded reviews exactly as dictated by the SRS (Six 5-stars, Four 4-stars, One 3-star, One 1-star "Waitlist flex").
+* **Viewport Restraint:** Container widths are mathematically calculated so that exactly ~8 geometric cards are visible on standard 1080p/4k displays at any given time.
 
-Make sure you have **Node.js (v20+)** installed.
+### Transparent Pricing & Connected Node UI
+* **Clean Authority:** Utilizes a "Design Monks" inspired layout. Clean pricing tiers ($2,000, $5,000, $10,000) with absolutely zero urgency language or discount tags.
+* **Node Architecture:** The "$500/Month Managed Presence" is visualized as a central hub connected to sub-features via a custom-engineered SVG network. Uses `strokeDasharray` animations to simulate packets of data flowing through glowing coral pink wires.
+* **Light-Speed Warp:** The Ecosystem CTA triggers a 120-beam randomized mathematical star-warp animation that overtakes the screen before routing.
+
+### The RSI Library (`/blogs`)
+A from-scratch, white-dominant knowledge base replacing standard blog templates.
+* **SVG Engineering:** Features a bespoke, zero-dependency 3-part SVG hero section (Bookshelf / Center Node / 2D Aerospace schematic).
+* **Structure:** Separates "Published Articles" from "Ongoing Internal Research", complete with pulsing indicator lights and an internal Staff Portal Gateway.
 
 ---
 
-### Installation
+## 📂 Routing & Directory Structure
 
-1. Clone the repository:
+All 13 primary application routes are fully mapped and accessible via the dual-layer navigation system:
+
+```text
+src/app/
+├── (Main Pill Nav)
+│   ├── page.tsx                 # Home
+│   ├── pricing/page.tsx         # Pricing & Node System
+│   ├── testimonials/page.tsx    # Proof of Concept & Puzzle Reel
+│   └── ecosystem/page.tsx       # Start Project CTA / Portal
+│
+├── (Off-Canvas Drawer Nav)
+│   ├── services/page.tsx
+│   ├── work/page.tsx            # Portfolio
+│   ├── industries/page.tsx
+│   ├── team/page.tsx            # Dual-Theme Crossover
+│   ├── blogs/page.tsx           # RSI Library
+│   ├── rs-international/page.tsx
+│   ├── partner/page.tsx
+│   ├── contact-ceo/page.tsx
+│   └── complains/page.tsx       # Complaints / Resolution
+````
+
+---
+
+## 💻 Local Development
+
+1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/Raazia-Imran/rsi-studio-v2.git
 ```
 
-2. Navigate to the project directory:
-
-```bash
-cd rsi-studio-v2
-```
-
-3. Install dependencies:
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-4. Start the development server:
+3. **Start the development server:**
 
 ```bash
 npm run dev
 ```
 
-5. Open your browser and go to:
-
-```
-http://localhost:3000
-```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🌿 Git Workflow & Branching Strategy
+## 🌿 Team Git Workflow
 
-To maintain clean code and prevent merge conflicts, all developers must adhere to the following workflow:
+To maintain the integrity of the core architecture and prevent merge conflicts, all developers **must** adhere to the following workflow:
 
-1. **Never push directly to `main`.**
-2. **Create a Feature Branch**
+**Rule 1: Never push directly to `main`.**
+
+**Creating Features:**
 
 ```bash
 git checkout -b feature/your-feature-name
-```
-
-3. **Commit with Conventional Messages**
-
-Example:
-
-```
-feat(pricing): implement node architecture
-```
-
-4. **Push and Open a Pull Request**
-
-```bash
+# Make your changes
+git add .
+git commit -m "feat(section): description of work"
 git push origin feature/your-feature-name
 ```
 
-5. **Wait for Code Review**
+*Open a Pull Request on GitHub. Only Lead Developers may merge PRs into `main`.*
 
-Only Lead Developers may merge into `main`.
+**Syncing your Local Environment (Without losing your Work-in-Progress):**
 
-**Note:** Use `git stash` and `git pull origin main` when syncing your local environment with core architectural updates to protect your work-in-progress.
+```bash
+git stash                  # Temporarily saves your uncommitted work
+git checkout main          # Switch to main branch
+git pull origin main       # Download the latest architectural updates
+git checkout your-branch   # Go back to your feature branch
+git merge main             # Merge the new updates into your branch
+git stash pop              # Apply your saved uncommitted work back on top
+```
 
 ---
 
-## 🎨 Brand Guidelines
+## 🎨 Brand & UI Guidelines
 
-* **Primary Accent:** Coral Pink `#FF6B6B`
+All new UI components must strictly adhere to these design tokens:
 
-* **Secondary Accent:** RSI ONE Beige `#E5D9C5`
+* **Primary Accent:** Coral Pink (`#FF6B6B`) - Used for highlights, active states, and glowing node lines.
+
+* **Secondary Accent:** RSI ONE Beige (`#E5D9C5`) - Used exclusively for the crossover Team page and upper management sections.
 
 * **Backgrounds:**
 
-  * Pure Black `#000000`
-  * Deep Studio Charcoal `#050505` / `#0A0A0F`
+  * Pure Black (`#000000`) for vast negative space.
+  * Deep Studio Charcoal (`#050505` / `#0A0A0F`) for elevated cards and section breaks.
 
-* **Typography:** Custom `font-display` and `font-mono` stacks.
+* **Typography:**
+
+  * Headers/Display: `font-display` (tracking-tighter)
+  * Eyebrows/Data: `font-mono` (uppercase, tracking-widest, text-[10px] to text-[12px])
 
 ---
 
 *Engineered with precision for RSI.*
+
+```
+
+
+
+Do you want me to do that next?
+```
