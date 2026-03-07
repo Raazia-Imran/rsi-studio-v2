@@ -73,7 +73,7 @@ export default function Footer() {
   </div>
 
   {/* Industries */}
-  
+
   <div>
     <h4 className="text-[#FF6B6B] text-xs font-bold uppercase tracking-widest mb-6">
       Industries
@@ -133,7 +133,7 @@ export default function Footer() {
       />
     </div>
   ))
-
+}
 </div>      
         <div className="text-center mb-24">
           <div className="flex justify-center gap-12 text-[11px] tracking-[0.25em] uppercase text-white/60">
