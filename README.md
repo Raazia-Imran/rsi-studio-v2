@@ -1,97 +1,153 @@
+# 🚀 RSI Studio V2
 
+> **Enterprise-grade Digital Architecture & High-End UX/UI Ecosystem**
 
-# 🌌 RSI STUDIO v2
-
-### **Perfection in Pixels — Engineering Digital Dominance**
-
-RSI Studio is a high-end digital engineering workshop that builds visual systems for the top 1% of ambitious brands. This project represents **Version 2.0** of our architectural engine, featuring cinematic animations, architectural depth, and absolute aesthetic authority.
+RSI Studio V2 is a premium, high-ticket digital agency platform engineered with Next.js 16, React 19, and Tailwind CSS v4. It features strict Software Requirements Specification (SRS) compliance, cinematic Framer Motion physics, and custom multi-theme crossover architectures.
 
 ---
 
-## 🚀 The System Experience
+## 🛠️ Tech Stack & Dependencies
 
-Our interface is built on a "System-Centered" layout inspired by world-class design discipline:
+Built on the bleeding edge of modern web development:
 
-* **Cinematic Hero**: Floating glass icons and moving architectural frames with a deep parallax scroll.
-* **Stacking Card Services**: A core-engine layout where service modules stack dynamically as you explore our expertise.
-* **Industry Success Grid**: High-stakes sector visualization for Private Yachts, Aviation, Real Estate, and more.
-* **Dual Portfolio System**: A high-contrast "Selected Systems" section paired with a futuristic "Visual System" infinite slideshow.
-* **Warp Speed Ecosystem**: A space-travel style transition into the RSI onboarding flow.
-* **Dual Reel Reviews**: A paired-motion social proof system upgraded for digital dominance.
-
----
-
-## 🛠 Tech Stack & Architecture
-
-This engine is built with the latest high-performance modules:
-
-| Module | Implementation |
-| --- | --- |
-| **Framework** | Next.js 16+ (App Router) |
-| **Core Logic** | React 19 (Server & Client Components) |
-| **Styling** | Tailwind CSS 4.0 (Modern @theme variables) |
-| **Motion Engine** | Framer Motion 12 (Advanced Parallax & Scroll Triggers) |
-| **Icons** | Lucide React (Minimalist Technical Icons) |
-| **Typography** | Space Grotesk (Display) & Inter (Sans) |
+* **Core:** Next.js 16.1.6 (App Router) & React 19.2.3
+* **Styling:** Tailwind CSS v4
+* **Animation Engine:** Framer Motion v12.31
+* **Smooth Scrolling:** Lenis (`@studio-freight/lenis`)
+* **Infinite Marquees:** `react-fast-marquee`
+* **Iconography:** `lucide-react`
+* **Type Safety:** TypeScript v5
 
 ---
 
-## 📦 Installation & Initialization
+## 🏛️ Core Architecture & Features
 
-To initialize the RSI system locally:
+### 1. Advanced Navigation System (Dual-Layer)
 
-1. **Clone the Repository**:
+* **Primary Dock:** A floating, glassmorphism bottom pill restricted to core conversion routes (Home, Pricing, Testimonials, Ecosystem CTA).
+* **Secondary Drawer:** A cinematic right-side off-canvas slide-out menu that houses all 9 extended routes, preventing UI viewport clutter.
+
+---
+
+### 2. The "OG Puzzle" Testimonial Reel
+
+* **Mathematical Masonry Grid:** A fully interlocking, dual-row sliding puzzle grid powered by exact CSS Grid spans (`col-span-2 row-span-2`).
+* **SRS Data Compliance:** Strictly features 12 reviews (Six 5-stars, Four 4-stars, One 3-star, One 1-star Waitlist flex).
+* **Viewport Constraints:** Scaled to ensure exactly 8 geometric cards are visible on standard 1080p/4k displays at any given time.
+
+---
+
+### 3. Transparent Pricing & Connected Node UI
+
+* **Design Monks Layout:** Clean, urgency-free pricing tiers ($2,000, $5,000, $10,000) establishing high-ticket authority.
+* **Node Architecture:** The "$500/Month Managed Presence" add-on is visualized as a central hub connected via glowing, flowing SVG data wires to categorized sub-nodes (Growth, Operations, Security).
+* **Warp Speed Transition:** Features a mathematical 120-beam light-speed warp animation when routing to the Ecosystem portal.
+
+---
+
+### 4. Dual-Theme Crossover Engine (Team Page)
+
+* Seamlessly blends two distinct corporate identities: **RSI ONE** (Beige/Black/White) and **RSI Studio** (Coral Pink/Black/White).
+* Stylistic rules uniquely map to 5 distinct department tiers (Founders, Backend, Frontend, Management, Sales) representing 17 team members.
+
+---
+
+### 5. RSI Library (Blogging Portal)
+
+* A from-scratch, white-dominant knowledge base.
+* Features a bespoke zero-dependency SVG hero section (Bookshelf / Center Node / 2D Aerospace schematic).
+* Integrated layout for published R&D articles, ongoing internal research, and an Employee Portal login.
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+
+Make sure you have **Node.js (v20+)** installed.
+
+---
+
+### Installation
+
+1. Clone the repository:
+
 ```bash
-git clone https://github.com/raazia-imran/rsi-studio-v2.git
-cd rsi-studio-v2
-
+git clone https://github.com/Raazia-Imran/rsi-studio-v2.git
 ```
 
+2. Navigate to the project directory:
 
-2. **Install Dependencies**:
+```bash
+cd rsi-studio-v2
+```
+
+3. Install dependencies:
+
 ```bash
 npm install
-
 ```
 
+4. Start the development server:
 
-3. **Run Development Environment**:
 ```bash
 npm run dev
-
 ```
 
+5. Open your browser and go to:
 
-4. **Production Build**:
+```
+http://localhost:3000
+```
+
+---
+
+## 🌿 Git Workflow & Branching Strategy
+
+To maintain clean code and prevent merge conflicts, all developers must adhere to the following workflow:
+
+1. **Never push directly to `main`.**
+2. **Create a Feature Branch**
+
 ```bash
-npm run build
-
+git checkout -b feature/your-feature-name
 ```
 
+3. **Commit with Conventional Messages**
 
+Example:
+
+```
+feat(pricing): implement node architecture
+```
+
+4. **Push and Open a Pull Request**
+
+```bash
+git push origin feature/your-feature-name
+```
+
+5. **Wait for Code Review**
+
+Only Lead Developers may merge into `main`.
+
+**Note:** Use `git stash` and `git pull origin main` when syncing your local environment with core architectural updates to protect your work-in-progress.
 
 ---
 
-## 📂 System Architecture
+## 🎨 Brand Guidelines
 
-```text
-src/
-├── app/
-│   ├── components/
-│   │   ├── layout/        # Floating Nav & Global Shell
-│   │   ├── sections/      # Hero, Services, Portfolio, etc.
-│   │   └── ui/            # Cursor, SmoothScroll, BackToTop
-│   ├── globals.css        # Design Variables & Glassmorphism
-│   ├── layout.tsx         # Global Root Wrapper
-│   └── page.tsx           # Master Landing Assembly
-└── tailwind.config.ts     # Visual Token Configuration
+* **Primary Accent:** Coral Pink `#FF6B6B`
 
-```
+* **Secondary Accent:** RSI ONE Beige `#E5D9C5`
+
+* **Backgrounds:**
+
+  * Pure Black `#000000`
+  * Deep Studio Charcoal `#050505` / `#0A0A0F`
+
+* **Typography:** Custom `font-display` and `font-mono` stacks.
 
 ---
 
-## ⚖️ Exclusivity Declaration
-
-We do not build for everyone. We engineer digital assets for the **top 1% of ambitious brands**. Every asset in this repository is built with **absolute aesthetic authority** and **precision engineering**.
-
-**© 2026 RSI Studio — All Systems Go.**
+*Engineered with precision for RSI.*
