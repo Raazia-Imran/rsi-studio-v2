@@ -73,6 +73,7 @@ export default function Footer() {
   </div>
 
   {/* Industries */}
+  
   <div>
     <h4 className="text-[#FF6B6B] text-xs font-bold uppercase tracking-widest mb-6">
       Industries
@@ -131,9 +132,9 @@ export default function Footer() {
         className={`${logo.size} w-auto object-contain opacity-70 hover:opacity-100 transition duration-300`}
       />
     </div>
-  ))}
-</div>      
+  ))
 
+</div>      
         <div className="text-center mb-24">
           <div className="flex justify-center gap-12 text-[11px] tracking-[0.25em] uppercase text-white/60">
             <a href="#" className="hover:text-white transition duration-300">
