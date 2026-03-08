@@ -450,18 +450,201 @@
 //   );
 // }
 
+// "use client";
+
+// import { useRef, useState, useEffect } from "react";
+// import { motion } from "framer-motion";
+
+// interface LampProps {
+//   rotation: number;
+//   mouseX: number;
+//   baseRot: number;
+// }
+
+// // Beige Lamp with Coral Pink Light
+// function InteractiveLamp({ rotation, mouseX, baseRot }: LampProps) {
+//   // Calculate slight beam shift based on mouse position
+//   const beamShift =
+//     (mouseX / (typeof window !== "undefined" ? window.innerWidth : 1000) -
+//       0.5) *
+//     20;
+
+//   return (
+//     <motion.svg
+//       viewBox="0 0 300 400"
+//       className="w-full h-full overflow-visible"
+//       style={{ transformOrigin: "top center" }}
+//       animate={{ rotate: baseRot + beamShift }}
+//       transition={{ type: "spring", stiffness: 50, damping: 20 }}
+//     >
+//       <defs>
+//         <linearGradient id="beamFinal" x1="0.5" y1="0" x2="0.5" y2="1">
+//           <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.8" />
+//           <stop offset="60%" stopColor="#FF6B6B" stopOpacity="0.15" />
+//           <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0" />
+//         </linearGradient>
+//         <filter id="blurFinal">
+//           <feGaussianBlur stdDeviation="8" />
+//         </filter>
+//       </defs>
+
+//       {/* Beige Lamp Body */}
+//       <path d="M120,0 L180,0 L170,30 L130,30 Z" fill="#EAE0C8" />
+//       <ellipse cx="150" cy="30" rx="15" ry="5" fill="#EAE0C8" />
+
+//       {/* Coral Pink Beam */}
+//       <g style={{ mixBlendMode: "screen" }}>
+//         <path
+//           d="M130,30 L170,30 L260,400 L40,400 Z"
+//           fill="url(#beamFinal)"
+//           filter="url(#blurFinal)"
+//           opacity="0.8"
+//         />
+//       </g>
+//     </motion.svg>
+//   );
+// }
+
+// export default function Hero() {
+//   const [mouseX, setMouseX] = useState(0);
+
+//   useEffect(() => {
+//     const handleMouseMove = (e: MouseEvent) => setMouseX(e.clientX);
+//     window.addEventListener("mousemove", handleMouseMove);
+//     return () => window.removeEventListener("mousemove", handleMouseMove);
+//   }, []);
+
+//   return (
+//     <section className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
+//       {/* Interactive Lamps */}
+//       <div className="absolute top-0 left-[15%] w-[150px] md:w-[200px] pointer-events-none z-20">
+//         <InteractiveLamp rotation={-30} baseRot={-30} mouseX={mouseX} />
+//       </div>
+//       <div className="absolute top-0 right-[15%] w-[150px] md:w-[200px] pointer-events-none z-20">
+//         <InteractiveLamp rotation={30} baseRot={30} mouseX={mouseX} />
+//       </div>
+
+//       {/* Illuminated Wordmark */}
+//       <div className="relative z-50 text-center select-none mix-blend-screen">
+//         <h1
+//           className="text-[15vw] md:text-[12vw] leading-none font-display font-bold tracking-tighter text-white"
+//           style={{
+//             textShadow:
+//               "0 0 40px rgba(255, 107, 107, 0.4), 0 0 80px rgba(255, 107, 107, 0.2)",
+//           }}
+//         >
+//           RSI STUDIO
+//         </h1>
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 1 }}
+//           className="mt-8"
+//         >
+//           <a
+//             href="/ecosystem"
+//             className="inline-block px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-[#FF6B6B] hover:text-white transition-colors duration-300"
+//           >
+//             Start a Project
+//           </a>
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// }
+
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  Monitor,
+  Smartphone,
+  Code2,
+  Database,
+  ShieldCheck,
+  Globe,
+  LucideIcon,
+} from "lucide-react";
 
+// --- 1. FLOATING ICONS DATA ---
+interface FloatingIconProps {
+  Icon: LucideIcon;
+  top: string;
+  left: string;
+  delay: number;
+  index: number;
+}
+
+const FLOATING_ICONS: FloatingIconProps[] = [
+  { Icon: Monitor, top: "20%", left: "15%", delay: 0, index: 0 },
+  { Icon: Smartphone, top: "60%", left: "80%", delay: 1, index: 1 },
+  { Icon: Code2, top: "25%", left: "75%", delay: 2, index: 2 },
+  { Icon: Database, top: "75%", left: "20%", delay: 1.5, index: 3 },
+  { Icon: ShieldCheck, top: "50%", left: "10%", delay: 0.5, index: 4 },
+  { Icon: Globe, top: "45%", left: "88%", delay: 2.5, index: 5 },
+];
+
+// --- 2. MOBILE FRAMES DATA ---
+const MOBILE_FRAMES = [
+  { top: "15%", left: "-5%", rotate: -15, delay: 0 },
+  { top: "65%", left: "5%", rotate: 10, delay: 2 },
+  { top: "10%", left: "85%", rotate: 20, delay: 1 },
+  { top: "70%", left: "75%", rotate: -10, delay: 3 },
+];
+
+// --- 3. BACKGROUND COMPONENTS ---
+const FloatingIcon = ({ Icon, top, left, delay, index }: FloatingIconProps) => (
+  <motion.div
+    className="absolute z-10 pointer-events-none hidden md:block"
+    style={{ top, left }}
+    animate={{ y: [0, -20, 0] }}
+    transition={{
+      duration: 6 + index,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+  >
+    <div className="relative p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_0_15px_rgba(255,107,107,0.1)]">
+      <Icon size={22} className="text-[#FF6B6B]" />
+    </div>
+  </motion.div>
+);
+
+const MovingFrame = ({ top, left, rotate, delay }: any) => (
+  <motion.div
+    className="absolute z-0 pointer-events-none opacity-10 hidden md:block"
+    style={{ top, left, rotate: `${rotate}deg` }}
+    animate={{
+      y: [0, -40, 0],
+      rotate: [rotate, rotate + 5, rotate],
+    }}
+    transition={{
+      duration: 10,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+  >
+    <div className="w-48 h-[400px] border-4 border-white/10 rounded-[3rem] bg-white/5 relative overflow-hidden shadow-2xl">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-4 bg-white/10 rounded-full" />
+      <div className="mt-16 px-4 space-y-4">
+        <div className="h-4 w-2/3 bg-white/10 rounded" />
+        <div className="h-32 w-full bg-white/5 rounded-xl" />
+        <div className="h-4 w-full bg-white/10 rounded" />
+      </div>
+    </div>
+  </motion.div>
+);
+
+// --- 4. INTERACTIVE LAMP COMPONENT ---
 interface LampProps {
   rotation: number;
   mouseX: number;
   baseRot: number;
 }
 
-// Beige Lamp with Coral Pink Light
 function InteractiveLamp({ rotation, mouseX, baseRot }: LampProps) {
   // Calculate slight beam shift based on mouse position
   const beamShift =
@@ -505,18 +688,43 @@ function InteractiveLamp({ rotation, mouseX, baseRot }: LampProps) {
   );
 }
 
+// --- 5. MAIN HERO EXPORT ---
 export default function Hero() {
   const [mouseX, setMouseX] = useState(0);
+  const targetRef = useRef<HTMLElement>(null);
 
+  // Mouse tracking for lamps
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => setMouseX(e.clientX);
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // Scroll parallax for the background frames
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end start"],
+  });
+  const frameParallax = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
   return (
-    <section className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden">
-      {/* Interactive Lamps */}
+    <section
+      ref={targetRef}
+      className="relative h-screen w-full bg-black flex flex-col items-center justify-center overflow-hidden"
+    >
+      {/* Background Moving Frames (Z-0) */}
+      <motion.div style={{ y: frameParallax }} className="absolute inset-0">
+        {MOBILE_FRAMES.map((frame, i) => (
+          <MovingFrame key={i} {...frame} />
+        ))}
+      </motion.div>
+
+      {/* Floating Icons (Z-10) */}
+      {FLOATING_ICONS.map((item, i) => (
+        <FloatingIcon key={i} {...item} />
+      ))}
+
+      {/* Interactive Lamps (Z-20) */}
       <div className="absolute top-0 left-[15%] w-[150px] md:w-[200px] pointer-events-none z-20">
         <InteractiveLamp rotation={-30} baseRot={-30} mouseX={mouseX} />
       </div>
@@ -524,7 +732,7 @@ export default function Hero() {
         <InteractiveLamp rotation={30} baseRot={30} mouseX={mouseX} />
       </div>
 
-      {/* Illuminated Wordmark */}
+      {/* Illuminated Wordmark & CTA (Z-50) */}
       <div className="relative z-50 text-center select-none mix-blend-screen">
         <h1
           className="text-[15vw] md:text-[12vw] leading-none font-display font-bold tracking-tighter text-white"
@@ -543,13 +751,15 @@ export default function Hero() {
         >
           <a
             href="/ecosystem"
-            className="inline-block px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-[#FF6B6B] hover:text-white transition-colors duration-300"
+            className="inline-block px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-[0.2em] rounded-full hover:bg-[#FF6B6B] hover:text-white transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
           >
             Start a Project
           </a>
         </motion.div>
       </div>
+
+      {/* Fade out gradient at the bottom so elements don't abruptly cut off */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-40 pointer-events-none" />
     </section>
   );
 }
-
