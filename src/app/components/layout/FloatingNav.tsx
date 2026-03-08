@@ -391,24 +391,21 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
-// 1. Primary links always visible on the bottom pill
+// 1. Primary links always visible on the bottom pill (Desktop)
 const PRIMARY_LINKS = [
   { label: "Home", href: "/" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Pricing", href: "/pricing" },
 ];
 
-// 2. Secondary pages that live ONLY inside the slide-out menu (covering all remaining routes)
+// 2. Secondary pages strictly following the SRS Menu directive
 const SECONDARY_LINKS = [
-  { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
-  { label: "Industries", href: "/industries" },
   { label: "Team", href: "/team" },
   { label: "Blogs", href: "/blogs" },
-  { label: "RS Int.", href: "/rs-international" },
-  { label: "Partner", href: "/partner" },
-  { label: "Contact CEO", href: "/contact-ceo" },
-  { label: "Complaints", href: "/complains" },
+  { label: "RS Int", href: "/rs-international" },
+  { label: "Talk with CEO", href: "/contact-ceo" },
+  { label: "Become Partner", href: "/partner" },
+  { label: "Complains", href: "/complains" },
 ];
 
 export default function Navbar() {
@@ -417,11 +414,11 @@ export default function Navbar() {
 
   return (
     <>
-      {/* --- THE RIGHT-SIDE DRAWER MENU (Secondary Links Only) --- */}
+      {/* --- THE RIGHT-SIDE DRAWER MENU --- */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop Blur Overlay - Darkens the site slightly but doesn't block it out */}
+            {/* Backdrop Blur Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -431,7 +428,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            {/* Slide-in Sidebar Panel (Opens on the right side) */}
+            {/* Slide-in Sidebar Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -452,37 +449,76 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* Sidebar Links */}
-              <div className="flex flex-col gap-5 flex-1">
-                <span className="text-[#FF6B6B] text-[10px] uppercase tracking-[0.2em] font-bold mb-4">
-                  Extended Navigation
-                </span>
-                {SECONDARY_LINKS.map((item, index) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <motion.div
-                      key={item.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04 + 0.1, duration: 0.4 }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`text-2xl md:text-3xl font-display font-bold transition-all flex items-center gap-4 ${
-                          isActive
-                            ? "text-[#FF6B6B] translate-x-3"
-                            : "text-white/70 hover:text-white hover:translate-x-3"
-                        }`}
+              {/* Sidebar Links Container */}
+              <div className="flex flex-col gap-10 flex-1">
+                {/* CORE NAVIGATION (Only renders inside the drawer on Mobile devices) */}
+                <div className="flex flex-col gap-5 md:hidden">
+                  <span className="text-white/40 text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
+                    Core Navigation
+                  </span>
+                  {PRIMARY_LINKS.map((item, index) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <motion.div
+                        key={`core-${item.label}`}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.04, duration: 0.4 }}
                       >
-                        {isActive && (
-                          <span className="w-2 h-2 rounded-full bg-[#FF6B6B] shadow-[0_0_10px_#FF6B6B]" />
-                        )}
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-2xl font-display font-bold transition-all flex items-center gap-4 ${
+                            isActive
+                              ? "text-[#FF6B6B] translate-x-3"
+                              : "text-white/70 hover:text-white hover:translate-x-3"
+                          }`}
+                        >
+                          {isActive && (
+                            <span className="w-2 h-2 rounded-full bg-[#FF6B6B] shadow-[0_0_10px_#FF6B6B]" />
+                          )}
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* EXTENDED NAVIGATION (The SRS Menu Directive) */}
+                <div className="flex flex-col gap-5">
+                  <span className="text-[#FF6B6B] text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
+                    Extended Menu
+                  </span>
+                  {SECONDARY_LINKS.map((item, index) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <motion.div
+                        key={`ext-${item.label}`}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: index * 0.04 + 0.1,
+                          duration: 0.4,
+                        }}
+                      >
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-2xl md:text-3xl font-display font-bold transition-all flex items-center gap-4 ${
+                            isActive
+                              ? "text-[#FF6B6B] translate-x-3"
+                              : "text-white/70 hover:text-white hover:translate-x-3"
+                          }`}
+                        >
+                          {isActive && (
+                            <span className="w-2 h-2 rounded-full bg-[#FF6B6B] shadow-[0_0_10px_#FF6B6B]" />
+                          )}
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Sidebar Bottom CTA */}
@@ -515,13 +551,13 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Primary Desktop Links */}
+          {/* Primary Desktop Links (Hidden on Mobile) */}
           <div className="hidden md:flex items-center gap-8">
             {PRIMARY_LINKS.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
-                  key={item.label}
+                  key={`pill-${item.label}`}
                   href={item.href}
                   className="relative text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors shrink-0"
                 >
@@ -538,12 +574,13 @@ export default function Navbar() {
           </div>
 
           {/* Call to Actions & Menu Trigger */}
-          <div className="flex items-center gap-6 shrink-0 border-l border-white/10 pl-6">
+          <div className="flex items-center gap-6 shrink-0 md:border-l md:border-white/10 md:pl-6">
+            {/* The Start a Project CTA (Hidden on Mobile Pill to save space) */}
             <Link
               href="/ecosystem"
               className="hidden md:block text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF6B6B] hover:text-white transition-colors drop-shadow-[0_0_8px_rgba(255,107,107,0.4)]"
             >
-              Start Project
+              Start a Project
             </Link>
 
             {/* Menu Button to trigger the Right Sidebar */}
