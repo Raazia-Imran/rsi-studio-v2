@@ -382,7 +382,6 @@
 //     </motion.nav>
 //   );
 // }
-
 "use client";
 
 import { useState } from "react";
@@ -398,8 +397,9 @@ const PRIMARY_LINKS = [
   { label: "Pricing", href: "/pricing" },
 ];
 
-// 2. Secondary pages strictly following the SRS Menu directive
+// 2. Secondary pages (Extended Menu - Now including Services)
 const SECONDARY_LINKS = [
+  { label: "Services", href: "/services" },
   { label: "Team", href: "/team" },
   { label: "Blogs", href: "/blogs" },
   { label: "RS Int", href: "/rs-international" },
@@ -484,7 +484,7 @@ export default function Navbar() {
                   })}
                 </div>
 
-                {/* EXTENDED NAVIGATION (The SRS Menu Directive) */}
+                {/* EXTENDED NAVIGATION */}
                 <div className="flex flex-col gap-5">
                   <span className="text-[#FF6B6B] text-[10px] uppercase tracking-[0.2em] font-bold mb-2">
                     Extended Menu
