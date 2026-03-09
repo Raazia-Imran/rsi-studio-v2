@@ -112,10 +112,204 @@
 //   );
 // }
 
+// "use client";
+
+// import { motion } from "framer-motion";
+// import { ArrowRight, BookOpen, Plane } from "lucide-react";
+// import Link from "next/link";
+
+// const PUBLISHED_ARTICLES = [
+//   {
+//     tag: "Engineering",
+//     title: "Scaling Next.js for Enterprise SaaS Architecture",
+//     date: "Mar 15, 2026",
+//   },
+//   {
+//     tag: "Design",
+//     title: "The Psychology of Glassmorphism in High-Ticket Sales",
+//     date: "Mar 10, 2026",
+//   },
+//   {
+//     tag: "Operations",
+//     title: "Why We Strictly Limit Onboarding to 6 Clients",
+//     date: "Feb 28, 2026",
+//   },
+//   {
+//     tag: "AI Automations",
+//     title: "Integrating AI Pipelines into Legacy Systems",
+//     date: "Feb 20, 2026",
+//   },
+// ];
+
+// const ONGOING_RESEARCH = [
+//   {
+//     tag: "R&D",
+//     title: "Zero-Latency Global Edge Rendering Techniques",
+//     status: "In Progress",
+//   },
+//   {
+//     tag: "Systems",
+//     title: "Automated CRM Node Synchronization Protocols",
+//     status: "Drafting",
+//   },
+// ];
+
+// export default function BlogsPage() {
+//   return (
+//     <main className="min-h-screen bg-white text-black font-display selection:bg-[#FF6B6B] selection:text-white pb-32">
+//       {/* --- HERO SECTION --- */}
+//       <section className="relative pt-40 pb-20 px-6 border-b border-black/10 overflow-hidden min-h-[60vh] flex items-center">
+//         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+//           {/* Left: The Shelf Illustration */}
+//           <div className="hidden md:flex flex-col items-center justify-center w-1/4 opacity-20">
+//             <svg
+//               width="120"
+//               height="120"
+//               viewBox="0 0 24 24"
+//               fill="none"
+//               stroke="black"
+//               strokeWidth="1"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             >
+//               <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+//               <path d="M6 14h14" />
+//               <path d="M6 9h14" />
+//             </svg>
+//           </div>
+
+//           {/* Center: The RSI Library Core */}
+//           <div className="flex-1 text-center flex flex-col items-center">
+//             <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-8 shadow-2xl">
+//               <BookOpen size={24} />
+//             </div>
+//             <h2 className="text-black/50 text-xs font-mono uppercase tracking-[0.4em] mb-4">
+//               Knowledge Base
+//             </h2>
+//             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
+//               THE RSI <span className="text-[#FF6B6B]">LIBRARY</span>
+//             </h1>
+//             <p className="text-black/60 max-w-md mx-auto mb-10 text-sm leading-relaxed">
+//               Explore our latest engineering paradigms, design philosophy, and
+//               ongoing systemic research.
+//             </p>
+//             <button className="bg-black text-white px-8 py-4 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-[#FF6B6B] transition-colors flex items-center gap-3">
+//               Explore Library <ArrowRight size={16} />
+//             </button>
+
+//             {/* Staff Portal Link */}
+//             <Link
+//               href="/staff-login"
+//               className="mt-6 text-[10px] uppercase tracking-widest text-black/30 hover:text-black border-b border-black/10 pb-1 transition-colors"
+//             >
+//               Internal Portal Login
+//             </Link>
+//           </div>
+
+//           {/* Right: The 2D Airplane/Components Illustration */}
+//           <div className="hidden md:flex flex-col items-center justify-center w-1/4 opacity-20">
+//             <svg
+//               width="140"
+//               height="140"
+//               viewBox="0 0 24 24"
+//               fill="none"
+//               stroke="black"
+//               strokeWidth="1"
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//             >
+//               <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.6L3 8l5 5-3.2 3.2c-.2.2-.5.3-.8.2L2 16l1-1c.4-.2.9 0 1.2.4L6 18l3.2-3.2 5 5c.4.4.9.4 1.3.1l1.8-1.8c.4-.2.7-.6.5-1z" />
+//               <circle cx="12" cy="12" r="2" />
+//             </svg>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* --- LIBRARY GRID --- */}
+//       <section className="max-w-7xl mx-auto px-6 pt-32">
+//         <div className="flex flex-col lg:flex-row gap-16">
+//           {/* Main Published Articles (Left Side) */}
+//           <div className="flex-1">
+//             <h3 className="text-2xl font-bold tracking-tighter mb-10 border-b border-black/10 pb-4">
+//               Published Articles
+//             </h3>
+//             <div className="grid sm:grid-cols-2 gap-6">
+//               {PUBLISHED_ARTICLES.map((article, i) => (
+//                 <div
+//                   key={i}
+//                   className="group border border-black/10 p-8 rounded-3xl hover:border-black/30 hover:shadow-xl transition-all cursor-pointer bg-[#FAFAFA]"
+//                 >
+//                   <div className="flex justify-between items-start mb-16">
+//                     <span className="text-[#FF6B6B] text-[10px] font-bold uppercase tracking-widest bg-[#FF6B6B]/10 px-3 py-1 rounded-full">
+//                       {article.tag}
+//                     </span>
+//                   </div>
+//                   <h4 className="text-xl font-bold leading-snug mb-4 group-hover:text-[#FF6B6B] transition-colors">
+//                     {article.title}
+//                   </h4>
+//                   <p className="text-black/40 text-xs font-mono uppercase tracking-widest">
+//                     {article.date}
+//                   </p>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Ongoing Research Sidebar (Right Side) */}
+//           <div className="w-full lg:w-1/3">
+//             <h3 className="text-2xl font-bold tracking-tighter mb-10 border-b border-black/10 pb-4">
+//               Internal Research
+//             </h3>
+//             <div className="flex flex-col gap-6">
+//               {ONGOING_RESEARCH.map((research, i) => (
+//                 <div
+//                   key={i}
+//                   className="border border-dashed border-black/20 p-6 rounded-2xl bg-white relative overflow-hidden"
+//                 >
+//                   <div className="absolute top-0 right-0 w-16 h-16 bg-black/5 rounded-bl-full pointer-events-none" />
+//                   <span className="text-black/50 text-[10px] font-bold uppercase tracking-widest mb-3 block">
+//                     {research.tag}
+//                   </span>
+//                   <h4 className="text-lg font-bold leading-snug mb-4">
+//                     {research.title}
+//                   </h4>
+//                   <div className="flex items-center gap-2">
+//                     <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
+//                     <span className="text-xs font-mono text-black/40 uppercase">
+//                       {research.status}
+//                     </span>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* --- PAGINATION --- */}
+//         <div className="mt-24 pt-10 border-t border-black/10 flex items-center justify-center gap-2">
+//           <button className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:bg-black hover:text-white transition-colors">
+//             1
+//           </button>
+//           <button className="w-10 h-10 rounded-full border border-black flex items-center justify-center bg-black text-white shadow-lg">
+//             2
+//           </button>
+//           <button className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:bg-black hover:text-white transition-colors">
+//             3
+//           </button>
+//           <span className="text-black/30 mx-2">...</span>
+//           <button className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:bg-black hover:text-white transition-colors">
+//             <ArrowRight size={14} />
+//           </button>
+//         </div>
+//       </section>
+//     </main>
+//   );
+// }
+
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Plane } from "lucide-react";
+import { ArrowRight, BookOpen, Activity } from "lucide-react";
 import Link from "next/link";
 
 const PUBLISHED_ARTICLES = [
@@ -186,10 +380,10 @@ export default function BlogsPage() {
             <h2 className="text-black/50 text-xs font-mono uppercase tracking-[0.4em] mb-4">
               Knowledge Base
             </h2>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 text-center">
               THE RSI <span className="text-[#FF6B6B]">LIBRARY</span>
             </h1>
-            <p className="text-black/60 max-w-md mx-auto mb-10 text-sm leading-relaxed">
+            <p className="text-black/60 max-w-md mx-auto mb-10 text-sm leading-relaxed text-center">
               Explore our latest engineering paradigms, design philosophy, and
               ongoing systemic research.
             </p>
@@ -225,68 +419,93 @@ export default function BlogsPage() {
         </div>
       </section>
 
-      {/* --- LIBRARY GRID --- */}
+      {/* --- LIBRARY CONTENT --- */}
       <section className="max-w-7xl mx-auto px-6 pt-32">
-        <div className="flex flex-col lg:flex-row gap-16">
-          {/* Main Published Articles (Left Side) */}
-          <div className="flex-1">
+        <div className="flex flex-col gap-24">
+          {/* 1. Main Published Articles (Full Width Grid) */}
+          <div className="w-full">
             <h3 className="text-2xl font-bold tracking-tighter mb-10 border-b border-black/10 pb-4">
               Published Articles
             </h3>
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {PUBLISHED_ARTICLES.map((article, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="group border border-black/10 p-8 rounded-3xl hover:border-black/30 hover:shadow-xl transition-all cursor-pointer bg-[#FAFAFA]"
+                  whileHover={{ y: -5 }}
+                  className="group border border-black/10 p-8 rounded-3xl hover:border-black/30 hover:shadow-xl transition-all cursor-pointer bg-[#FAFAFA] flex flex-col justify-between h-full"
                 >
-                  <div className="flex justify-between items-start mb-16">
-                    <span className="text-[#FF6B6B] text-[10px] font-bold uppercase tracking-widest bg-[#FF6B6B]/10 px-3 py-1 rounded-full">
-                      {article.tag}
-                    </span>
+                  <div>
+                    <div className="flex justify-between items-start mb-12">
+                      <span className="text-[#FF6B6B] text-[10px] font-bold uppercase tracking-widest bg-[#FF6B6B]/10 px-3 py-1 rounded-full">
+                        {article.tag}
+                      </span>
+                    </div>
+                    <h4 className="text-xl font-bold leading-snug mb-6 group-hover:text-[#FF6B6B] transition-colors">
+                      {article.title}
+                    </h4>
                   </div>
-                  <h4 className="text-xl font-bold leading-snug mb-4 group-hover:text-[#FF6B6B] transition-colors">
-                    {article.title}
-                  </h4>
                   <p className="text-black/40 text-xs font-mono uppercase tracking-widest">
                     {article.date}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Ongoing Research Sidebar (Right Side) */}
-          <div className="w-full lg:w-1/3">
-            <h3 className="text-2xl font-bold tracking-tighter mb-10 border-b border-black/10 pb-4">
-              Internal Research
-            </h3>
-            <div className="flex flex-col gap-6">
+          {/* 2. Studio X Research (Personalized Shifted Below Articles) */}
+          <div className="w-full">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 border-b border-black/10 pb-4 gap-4">
+              <h3 className="text-2xl font-bold tracking-tighter">
+                Studio X: Applied R&D
+              </h3>
+              <span className="text-[10px] font-mono uppercase tracking-widest bg-black text-white px-3 py-1.5 rounded-full inline-block w-max">
+                Restricted Access
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {ONGOING_RESEARCH.map((research, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="border border-dashed border-black/20 p-6 rounded-2xl bg-white relative overflow-hidden"
+                  whileHover={{ y: -5, borderColor: "rgba(0,0,0,0.3)" }}
+                  className="group border border-black/10 p-8 rounded-3xl bg-[#FAFAFA] relative overflow-hidden flex flex-col justify-between min-h-[220px] cursor-pointer transition-colors"
                 >
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-black/5 rounded-bl-full pointer-events-none" />
-                  <span className="text-black/50 text-[10px] font-bold uppercase tracking-widest mb-3 block">
-                    {research.tag}
-                  </span>
-                  <h4 className="text-lg font-bold leading-snug mb-4">
-                    {research.title}
-                  </h4>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-                    <span className="text-xs font-mono text-black/40 uppercase">
-                      {research.status}
+                  {/* Subtle Blueprint Grid Background */}
+                  <div className="absolute inset-0 opacity-[0.15] pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
+
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-6">
+                      <span className="text-black/50 text-[10px] font-bold uppercase tracking-widest border border-black/10 px-3 py-1 rounded-full bg-white shadow-sm">
+                        {research.tag}
+                      </span>
+                      <Activity
+                        size={16}
+                        className="text-black/30 group-hover:text-[#FF6B6B] transition-colors"
+                      />
+                    </div>
+                    <h4 className="text-xl font-bold leading-snug mb-6 group-hover:text-[#FF6B6B] transition-colors pr-4">
+                      {research.title}
+                    </h4>
+                  </div>
+
+                  <div className="relative z-10 flex items-center justify-between pt-6 border-t border-black/10">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-2 h-2 rounded-full bg-[#FF6B6B] animate-pulse" />
+                      <span className="text-[10px] font-mono text-black/60 uppercase tracking-widest">
+                        {research.status}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-black/30 group-hover:text-[#FF6B6B] transition-colors uppercase tracking-widest flex items-center gap-1">
+                      View Log <ArrowRight size={10} />
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
 
         {/* --- PAGINATION --- */}
-        <div className="mt-24 pt-10 border-t border-black/10 flex items-center justify-center gap-2">
+        <div className="mt-32 pt-10 border-t border-black/10 flex items-center justify-center gap-2">
           <button className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/50 hover:bg-black hover:text-white transition-colors">
             1
           </button>
