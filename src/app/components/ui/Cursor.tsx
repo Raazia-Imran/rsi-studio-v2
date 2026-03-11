@@ -9,15 +9,27 @@ export default function Cursor() {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    const moveCursor = (e: MouseEvent) => {
-      // requestAnimationFrame frames ko browser ki refresh rate se sync karta hai
-      window.requestAnimationFrame(() => {
-        cursor.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
-      });
+    let mouseX = -100;
+    let mouseY = -100;
+    let animationFrameId: number;
+
+    const updateCoordinates = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     };
 
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
+    const renderLoop = () => {
+      cursor.style.transform = `translate3d(${mouseX - 12}px, ${mouseY - 12}px, 0)`;
+      animationFrameId = window.requestAnimationFrame(renderLoop);
+    };
+
+    window.addEventListener("mousemove", updateCoordinates, { passive: true });
+    renderLoop();
+
+    return () => {
+      window.removeEventListener("mousemove", updateCoordinates);
+      window.cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   return (
@@ -28,7 +40,7 @@ export default function Cursor() {
         backgroundColor: "#FF6B6B",
         border: "2px solid #FF6B6B",
         boxShadow: "0 0 15px #FF6B6B, 0 0 30px rgba(255, 107, 107, 0.6)",
-        willChange: "transform", // Browser ko pehle se batata hai ke ye move hoga (Fastest)
+        willChange: "transform",
       }}
     />
   );
