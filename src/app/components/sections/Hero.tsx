@@ -35,18 +35,37 @@ function Cursor() {
 }
 
 function InteractiveSpotlight({ mouseX, position }: { mouseX: any, position: "left" | "right" }) {
-  const baseAngle = position === "left" ? -15 : 15;
-  const [angle, setAngle] = useState(baseAngle);
+  const initialSwing = position === "left" ? 45 : -45;
+  const [angle, setAngle] = useState(initialSwing);
+  const [isTrackingMouse, setIsTrackingMouse] = useState(false);
 
   useEffect(() => {
+    const settleTimer = setTimeout(() => {
+      setAngle(0);
+    }, 100);
+
+    const trackingTimer = setTimeout(() => {
+      setIsTrackingMouse(true);
+    }, 1500);
+
+    return () => {
+      clearTimeout(settleTimer);
+      clearTimeout(trackingTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isTrackingMouse) return;
+
     const unsubscribe = mouseX.on("change", (v: number) => {
       const screenWidth = typeof window !== "undefined" ? window.innerWidth : 1000;
       const normalizedX = (v - screenWidth / 2) / (screenWidth / 2);
-      const maxSwing = 2; 
-      setAngle(baseAngle + (normalizedX * maxSwing));
+      const maxSwing = 3; 
+      
+      setAngle(normalizedX * maxSwing);
     });
     return () => unsubscribe();
-  }, [mouseX, position, baseAngle]);
+  }, [mouseX, isTrackingMouse]);
 
   return (
     <motion.svg
@@ -109,22 +128,31 @@ export default function Hero() {
   return (
     <section className="relative h-screen w-full bg-[#050505] flex flex-col items-center justify-center overflow-hidden cursor-none">
       <Cursor />
+      
       <div
         className="absolute inset-0 z-10 opacity-[0.02] pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
-      <div className="absolute top-0 left-[10%] w-[300px] pointer-events-none z-20">
-        <InteractiveSpotlight position="left" mouseX={mX} />
-      </div>
-      <div className="absolute top-0 right-[10%] w-[300px] pointer-events-none z-20">
-        <InteractiveSpotlight position="right" mouseX={mX} />
-      </div>
 
       <div className="relative z-30 w-full h-full flex flex-col items-center justify-center">
-        <div className="relative z-30 text-center select-none mix-blend-screen flex flex-col items-center">
+        <div className="relative z-30 text-center select-none mix-blend-screen flex flex-col items-center w-max">
           
+          <div 
+             className="absolute left-[6%] -translate-x-1/2 w-[300px] pointer-events-none z-20"
+             style={{ top: "calc(-50vh + 50%)" }}
+          >
+            <InteractiveSpotlight position="left" mouseX={mX} />
+          </div>
+
+          <div 
+             className="absolute right-[6%] translate-x-1/2 w-[300px] pointer-events-none z-20"
+             style={{ top: "calc(-50vh + 50%)" }}
+          >
+            <InteractiveSpotlight position="right" mouseX={mX} />
+          </div>
+
           <motion.h1
             className="text-[10vw] md:text-[11vw] leading-none font-display font-bold tracking-tighter text-white"
             animate={{ textShadow: dTS }}
@@ -138,7 +166,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 1.5 }}
           >
             <a
               href="/ecosystem"
