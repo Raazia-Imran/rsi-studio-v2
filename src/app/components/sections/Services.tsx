@@ -17,10 +17,10 @@ export default function Services() {
       
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[700px] h-[400px] md:h-[700px] bg-[#FF6B6B]/10 rounded-full blur-[100px] md:blur-[120px] pointer-events-none z-0 will-change-transform" />
 
-      <div className="w-full mt-24 md:mt-10 flex justify-start lg:justify-center overflow-x-auto overflow-y-hidden px-6 lg:px-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] snap-x snap-mandatory pb-10 lg:pb-0">
-        <div className="relative flex lg:block items-center gap-6 min-w-max lg:min-w-[1200px] lg:h-[1000px] z-10 transform-gpu">
+      <div className="w-full mt-24 md:mt-10 overflow-x-auto overflow-y-hidden px-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-10">
+        <div className="relative w-[1200px] min-w-[1200px] h-[1000px] z-10 transform-gpu mx-auto">
           
-          <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0">
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
             <g stroke="rgba(255,255,255,0.05)" strokeWidth="2" fill="none">
               <path d="M 600 500 C 600 340, 200 340, 200 180" />
               <path d="M 600 500 L 600 180" />
@@ -54,7 +54,7 @@ export default function Services() {
             </g>
           </svg>
 
-          <div className="hidden lg:flex absolute top-[450px] left-[550px] w-[100px] h-[100px] z-30 items-center justify-center transform-gpu">
+          <div className="flex absolute top-[450px] left-[550px] w-[100px] h-[100px] z-30 items-center justify-center transform-gpu">
             <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.1, 0.3] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="absolute inset-[-30px] rounded-full border border-[#FF6B6B]/20 will-change-transform" />
             <div className="absolute -inset-2 rounded-full border border-[#FF6B6B]/40 animate-[spin_10s_linear_infinite]" style={{ borderTopColor: 'transparent' }} />
             <div className="relative w-[70px] h-[70px] rounded-full bg-[#0A0A0A] shadow-[0_0_40px_rgba(255,107,107,0.4)] flex items-center justify-center border border-white/10 overflow-hidden">
@@ -63,7 +63,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[30px] lg:left-[40px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[30px] left-[40px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><Layout size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Web Design</h3>
@@ -98,7 +98,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[30px] lg:left-[440px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[30px] left-[440px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><Code2 size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Web Development</h3>
@@ -139,7 +139,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[30px] lg:left-[840px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[30px] left-[840px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><Server size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Custom Software</h3>
@@ -178,7 +178,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[670px] lg:left-[40px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[670px] left-[40px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><PenTool size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Blogging & SEO</h3>
@@ -210,7 +210,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[670px] lg:left-[440px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[670px] left-[440px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><Activity size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Monthly Presence</h3>
@@ -256,7 +256,7 @@ export default function Services() {
             </div>
           </div>
 
-          <div className="relative lg:absolute shrink-0 snap-center w-[85vw] sm:w-[320px] lg:w-[320px] h-[320px] lg:top-[670px] lg:left-[840px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
+          <div className="absolute shrink-0 w-[320px] h-[320px] top-[670px] left-[840px] rounded-2xl bg-[#0D0D12] border border-white/10 p-5 flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-20 group hover:border-[#FF6B6B]/40 transition-colors duration-500 transform-gpu">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 rounded-full bg-[#FF6B6B]/10 flex items-center justify-center border border-[#FF6B6B]/20"><Workflow size={16} className="text-[#FF6B6B]" /></div>
               <h3 className="text-[14px] font-bold text-white uppercase tracking-wider">Web Automations</h3>
