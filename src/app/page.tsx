@@ -33,7 +33,6 @@ import IndustrySuccess from "@/components/sections/IndustrySuccess";
 import FounderQuote from "@/components/sections/FounderQuote";
 // Importing the swiping stack cards based on your original file structure
 import AiCards from "@/components/sections/ManagePresence";
-import Portfolio from "./components/sections/Portfolio";
 
 export default function Home() {
   return (
@@ -52,8 +51,6 @@ export default function Home() {
 
       {/* 5. The Stacking Swipe Cards Component */}
       <AiCards />
-      <Portfolio/>
-
       {/* REVERTED: Reviews reel is safely moved to Testimonials page */}
       {/* NOTE: No Footer here. layout.tsx handles it globally. */}
     </main>
