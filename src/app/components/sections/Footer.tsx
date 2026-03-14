@@ -168,7 +168,7 @@ export default function Footer() {
 
           {/* Communications */}
           <div>
-            <h4 className="text-[#FF6B6B] text-[12git px] font-bold uppercase tracking-widest mb-4 md:mb-6">Communications</h4>
+            <h4 className="text-[#FF6B6B] text-[12px] font-bold uppercase tracking-widest mb-4 md:mb-6">Communications</h4>
             <div className="space-y-2 md:space-y-3 text-sm text-white/60">
               <p>+1 (437) 994-5030</p>
               <p>+92 329 1433211</p>
