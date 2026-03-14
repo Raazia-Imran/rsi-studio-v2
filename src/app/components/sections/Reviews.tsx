@@ -377,228 +377,432 @@
 
 "use client";
 
+import { useState } from "react";
 import { Star } from "lucide-react";
-import Marquee from "react-fast-marquee";
 
-// --- TRUE OG PUZZLE DATA (100% SRS Compliant) ---
-// 12 Reviews (6x 5-stars, 4x 4-stars, 1x 3-stars, 1x 1-stars)
-// Notice the `spanClass`. This mathematically locks them into a perfect 6x2 grid.
+// ─── GRID CONSTANTS ───────────────────────────────────────────────────────────
+const CELL_W = 170;   // px per column unit
+const CELL_H = 168;   // px per row unit
+const COLS   = 6;
+const ROWS   = 2;
+const TAB    = 16;    // tab protrusion in px
+const TAB_W  = 30;    // tab neck width in px
+const CR     = 12;    // corner radius
 
+const GRID_W = COLS * CELL_W; // 1020
+const GRID_H = ROWS * CELL_H; // 336
+
+// ─── REVIEW DATA ──────────────────────────────────────────────────────────────
 const ROW_ONE = [
-  // 1. Large (2x2)
-  {
-    spanClass: "col-span-2 row-span-2",
-    stars: 5,
-    name: "Sarah Jenkins",
-    role: "Founder, TechFlow",
-    text: "Incredible system architecture. RSI completely transformed our internal operations. The strict 6-client limit meant we got unparalleled attention to detail. Absolute game-changers.",
-  },
-  // 2. Tall (1x2)
-  {
-    spanClass: "col-span-1 row-span-2",
-    stars: 4,
-    name: "Marcus T.",
-    role: "CEO, InnovateX",
-    text: "Highly professional execution. The custom Next.js build is flawless.",
-  },
-  // 3. Small (1x1)
-  {
-    spanClass: "col-span-1 row-span-1",
-    stars: 5,
-    name: "Elena R.",
-    role: "Director, SaaS",
-    text: "Pixel perfect engineering. Flawless handoff.",
-  },
-  // 4. Wide (2x1)
-  {
-    spanClass: "col-span-2 row-span-1",
-    stars: 3,
-    name: "Chris D.",
-    role: "Business Owner",
-    text: "Gorgeous aesthetic, but the ecosystem was honestly a bit too complex for my small business. Built for SaaS.",
-  },
-  // 5. Wide (2x1)
-  {
-    spanClass: "col-span-2 row-span-1",
-    stars: 4,
-    name: "Nina S.",
-    role: "Product Lead",
-    text: "Great UI/UX capabilities. The Framer Motion integration makes our platform feel incredibly expensive.",
-  },
-  // 6. Small (1x1)
-  {
-    spanClass: "col-span-1 row-span-1",
-    stars: 5,
-    name: "David Kim",
-    role: "VP Marketing",
-    text: "A true strategic partner.",
-  },
+  { col:0, row:0, colSpan:2, rowSpan:2, stars:5, name:"Sarah Jenkins", role:"Founder, TechFlow",   text:"Incredible system architecture. RSI completely transformed our internal operations. The strict 6-client limit meant we got unparalleled attention to detail. Absolute game-changers." },
+  { col:2, row:0, colSpan:1, rowSpan:2, stars:4, name:"Marcus T.",     role:"CEO, InnovateX",      text:"Highly professional execution. The custom Next.js build is flawless and delivered ahead of schedule." },
+  { col:3, row:0, colSpan:1, rowSpan:1, stars:5, name:"Elena R.",      role:"Director, SaaS",      text:"Pixel perfect engineering. Flawless handoff." },
+  { col:4, row:0, colSpan:2, rowSpan:1, stars:3, name:"Chris D.",      role:"Business Owner",      text:"Gorgeous aesthetic, but the ecosystem was honestly a bit too complex for my small business." },
+  { col:3, row:1, colSpan:2, rowSpan:1, stars:4, name:"Nina S.",       role:"Product Lead",        text:"Great UI/UX capabilities. The Framer Motion integration makes our platform feel incredibly expensive." },
+  { col:5, row:1, colSpan:1, rowSpan:1, stars:5, name:"David Kim",     role:"VP Marketing",        text:"A true strategic partner." },
 ];
 
 const ROW_TWO = [
-  // 1. Tall (1x2)
-  {
-    spanClass: "col-span-1 row-span-2",
-    stars: 4,
-    name: "Tom H.",
-    role: "Operations Mgr",
-    text: "Solid backend infrastructure. The API integrations they wrote saved us hundreds of hours of manual labor.",
-  },
-  // 2. Large (2x2)
-  {
-    spanClass: "col-span-2 row-span-2",
-    stars: 5,
-    name: "James W.",
-    role: "E-commerce Dir",
-    text: "Absolutely stunning futuristic design. True artisans of the modern web. The $500 monthly managed presence is completely worth it for peace of mind.",
-  },
-  // 3. Wide (2x1) - The 1 Star Flex
-  {
-    spanClass: "col-span-2 row-span-1",
-    stars: 1,
-    name: "Anonymous",
-    role: "Waitlisted Client",
-    text: "Put on a 3-month waitlist because they refused to break their 6-client limit to onboard us. Good portfolio, but the exclusivity is frustratingly rigid.",
-  },
-  // 4. Small (1x1)
-  {
-    spanClass: "col-span-1 row-span-1",
-    stars: 5,
-    name: "Sophie M.",
-    role: "Startup Founder",
-    text: "Conversions doubled in month one.",
-  },
-  // 5. Small (1x1)
-  {
-    spanClass: "col-span-1 row-span-1",
-    stars: 5,
-    name: "Alex P.",
-    role: "Enterprise CTO",
-    text: "Performance gains were immediate.",
-  },
-  // 6. Wide (2x1)
-  {
-    spanClass: "col-span-2 row-span-1",
-    stars: 4,
-    name: "Rachel B.",
-    role: "Creative Dir",
-    text: "Very smooth transitions and premium aesthetics. Transparent systems exactly as promised.",
-  },
+  { col:0, row:0, colSpan:1, rowSpan:2, stars:4, name:"Tom H.",    role:"Operations Mgr",    text:"Solid backend infrastructure. The API integrations they wrote saved us hundreds of hours of manual labor." },
+  { col:1, row:0, colSpan:2, rowSpan:2, stars:5, name:"James W.",  role:"E-commerce Dir",    text:"Absolutely stunning futuristic design. True artisans of the modern web. The $500 monthly managed presence is completely worth it for peace of mind." },
+  { col:3, row:0, colSpan:2, rowSpan:1, stars:1, name:"Anonymous", role:"Waitlisted Client", text:"Put on a 3-month waitlist because they refused to break their 6-client limit. Good portfolio, but the exclusivity is frustratingly rigid." },
+  { col:5, row:0, colSpan:1, rowSpan:1, stars:5, name:"Sophie M.", role:"Startup Founder",   text:"Conversions doubled in month one." },
+  { col:3, row:1, colSpan:1, rowSpan:1, stars:5, name:"Alex P.",   role:"Enterprise CTO",    text:"Performance gains were immediate." },
+  { col:4, row:1, colSpan:2, rowSpan:1, stars:4, name:"Rachel B.", role:"Creative Dir",      text:"Very smooth transitions and premium aesthetics. Transparent systems exactly as promised." },
 ];
 
-const RenderStars = ({ count }: { count: number }) => (
-  <div className="flex gap-1 mb-4">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <Star
-        key={i}
-        size={14}
-        className={
-          i < count
-            ? "fill-[#FF6B6B] text-[#FF6B6B]"
-            : "fill-white/10 text-white/10"
-        }
-      />
-    ))}
-  </div>
-);
+// ─── SEAM DIRECTION TABLE ─────────────────────────────────────────────────────
+// Defines, for each internal shared edge, which side gets the TAB (protrusion).
+//
+// "v{col},{row}" = vertical seam at x = col*CELL_W, spanning grid-row `row`
+//   true  → tab protrudes to the RIGHT  (card on left has a bump on its right edge)
+//   false → tab protrudes to the LEFT   (card on right has a bump on its left edge)
+//
+// "h{col},{row}" = horizontal seam at y = row*CELL_H, spanning grid-col `col`
+//   true  → tab protrudes DOWNWARD  (card above has a bump on its bottom edge)
+//   false → tab protrudes UPWARD    (card below has a bump on its top edge)
+//
+// We only define seams that are internal (not on the outer border of the 6×2 grid).
+const SEAM: Record<string, boolean> = {
+  // Vertical seams (col 1..5, row 0..1)
+  "v1,0": true,  "v1,1": false,
+  "v2,0": false, "v2,1": true,
+  "v3,0": true,  "v3,1": false,
+  "v4,0": false, "v4,1": true,
+  "v5,0": true,  "v5,1": false,
+  // Horizontal seams (col 0..5, at row boundary 1)
+  "h0,1": true,
+  "h1,1": false,
+  "h2,1": true,
+  "h3,1": false,
+  "h4,1": true,
+  "h5,1": false,
+};
 
+// ─── PATH BUILDER ─────────────────────────────────────────────────────────────
+// Draws an SVG path for one puzzle piece defined by grid position & span.
+// Tabs protrude OUTWARD, blanks go INWARD — and every adjacent pair matches.
+function buildPath(col: number, row: number, colSpan: number, rowSpan: number): string {
+  const x0 = col * CELL_W;
+  const y0 = row * CELL_H;
+  const x1 = x0 + colSpan * CELL_W;
+  const y1 = y0 + rowSpan * CELL_H;
+
+  // Emit a tab or blank bump centered at (midX, edgeY) or (edgeX, midY)
+  // dir: "up"|"down"|"left"|"right" = direction tab protrudes
+  // For a blank (inward), we flip the direction
+  function tabBump(
+    axis: "h" | "v",
+    mid: number,
+    edge: number,
+    tabOut: boolean, // true = protrudes outward from this piece
+  ): string {
+    const t = TAB;
+    const hw = TAB_W / 2;
+    if (axis === "h") {
+      // horizontal edge — bump goes up (negative y) or down (positive y)
+      const ty = tabOut ? edge - t : edge + t; // outward = away from center
+      return [
+        `L ${mid - hw} ${edge}`,
+        `C ${mid - hw} ${ty} ${mid + hw} ${ty} ${mid + hw} ${edge}`,
+      ].join(" ");
+    } else {
+      // vertical edge — bump goes left or right
+      const tx = tabOut ? edge + t : edge - t;
+      return [
+        `L ${edge} ${mid - hw}`,
+        `C ${tx} ${mid - hw} ${tx} ${mid + hw} ${edge} ${mid + hw}`,
+      ].join(" ");
+    }
+  }
+
+  let d = "";
+
+  // ── TOP EDGE (y = y0), direction: left → right ──
+  d += `M ${x0 + CR} ${y0} `;
+  for (let c = col; c < col + colSpan; c++) {
+    const key = `h${c},${row}`;
+    if (row > 0 && SEAM[key] !== undefined) {
+      const mid = c * CELL_W + CELL_W / 2;
+      // SEAM true = tab goes DOWN (away from card above, INTO card below)
+      // We are traversing the TOP edge of this card (which is the BOTTOM of the card above)
+      // If SEAM[key]=true → tab protrudes downward → for our top edge it's a blank (inward, upward protrusion toward us)
+      const tabOut = !SEAM[key]; // invert: we're on the receiving side
+      d += tabBump("h", mid, y0, tabOut) + " ";
+    }
+  }
+  d += `L ${x1 - CR} ${y0} Q ${x1} ${y0} ${x1} ${y0 + CR} `;
+
+  // ── RIGHT EDGE (x = x1), direction: top → bottom ──
+  for (let r = row; r < row + rowSpan; r++) {
+    const key = `v${col + colSpan},${r}`;
+    if (col + colSpan < COLS && SEAM[key] !== undefined) {
+      const mid = r * CELL_H + CELL_H / 2;
+      // SEAM true = tab goes RIGHT → our right edge has a tab (outward)
+      const tabOut = SEAM[key];
+      d += tabBump("v", mid, x1, tabOut) + " ";
+    }
+  }
+  d += `L ${x1} ${y1 - CR} Q ${x1} ${y1} ${x1 - CR} ${y1} `;
+
+  // ── BOTTOM EDGE (y = y1), direction: right → left ──
+  for (let c = col + colSpan - 1; c >= col; c--) {
+    const key = `h${c},${row + rowSpan}`;
+    if (row + rowSpan < ROWS && SEAM[key] !== undefined) {
+      const mid = c * CELL_W + CELL_W / 2;
+      // SEAM true = tab goes DOWN → our bottom edge has a tab (outward downward)
+      const tabOut = SEAM[key];
+      // Traversing right→left, so emit bump in reverse x order
+      d += [
+        `L ${mid + TAB_W / 2} ${y1}`,
+        `C ${mid + TAB_W / 2} ${tabOut ? y1 + TAB : y1 - TAB} ${mid - TAB_W / 2} ${tabOut ? y1 + TAB : y1 - TAB} ${mid - TAB_W / 2} ${y1}`,
+      ].join(" ") + " ";
+    }
+  }
+  d += `L ${x0 + CR} ${y1} Q ${x0} ${y1} ${x0} ${y1 - CR} `;
+
+  // ── LEFT EDGE (x = x0), direction: bottom → top ──
+  for (let r = row + rowSpan - 1; r >= row; r--) {
+    const key = `v${col},${r}`;
+    if (col > 0 && SEAM[key] !== undefined) {
+      const mid = r * CELL_H + CELL_H / 2;
+      // SEAM true = tab goes RIGHT → for our left edge it's a blank (inward, tab protrudes left)
+      const tabOut = !SEAM[key]; // invert
+      // Traversing bottom→top, emit bump in reverse y order
+      d += [
+        `L ${x0} ${mid + TAB_W / 2}`,
+        `C ${tabOut ? x0 - TAB : x0 + TAB} ${mid + TAB_W / 2} ${tabOut ? x0 - TAB : x0 + TAB} ${mid - TAB_W / 2} ${x0} ${mid - TAB_W / 2}`,
+      ].join(" ") + " ";
+    }
+  }
+  d += `L ${x0} ${y0 + CR} Q ${x0} ${y0} ${x0 + CR} ${y0} Z`;
+
+  return d;
+}
+
+// ─── TEXT WRAP HELPER ─────────────────────────────────────────────────────────
+function wrapText(text: string, maxChars: number, maxLines: number): string[] {
+  const words = text.split(" ");
+  const lines: string[] = [];
+  let line = "";
+  for (const w of words) {
+    const test = line ? line + " " + w : w;
+    if (test.length > maxChars && line) {
+      lines.push(line);
+      line = w;
+      if (lines.length >= maxLines) break;
+    } else {
+      line = test;
+    }
+  }
+  if (line && lines.length < maxLines) lines.push(line);
+  return lines;
+}
+
+// ─── PUZZLE GRID ──────────────────────────────────────────────────────────────
+type CardDef = typeof ROW_ONE[0];
+
+function PuzzleGrid({
+  cards,
+  uid,
+}: {
+  cards: CardDef[];
+  uid: string;
+}) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const PAD = TAB + 2;
+
+  return (
+    <svg
+      width={GRID_W + PAD * 2}
+      height={GRID_H + PAD * 2}
+      viewBox={`${-PAD} ${-PAD} ${GRID_W + PAD * 2} ${GRID_H + PAD * 2}`}
+      style={{ display: "block", flexShrink: 0 }}
+      overflow="visible"
+    >
+      <defs>
+        {cards.map((c, i) => (
+          <clipPath key={i} id={`${uid}-cp-${i}`}>
+            <path d={buildPath(c.col, c.row, c.colSpan, c.rowSpan)} />
+          </clipPath>
+        ))}
+      </defs>
+
+      {cards.map((card, i) => {
+        const path = buildPath(card.col, card.row, card.colSpan, card.rowSpan);
+        const isHov = hovered === i;
+        const px = card.col * CELL_W;
+        const py = card.row * CELL_H;
+        const pw = card.colSpan * CELL_W;
+        const ph = card.rowSpan * CELL_H;
+
+        const fontSize = pw >= 300 ? 12 : pw >= 170 ? 11 : 10;
+        const charsPerLine = Math.floor((pw - 38) / (fontSize * 0.58));
+        const maxLines = Math.floor((ph - 82) / (fontSize * 1.6));
+        const lines = wrapText(`"${card.text}"`, charsPerLine, maxLines);
+
+        return (
+          <g
+            key={i}
+            onMouseEnter={() => setHovered(i)}
+            onMouseLeave={() => setHovered(null)}
+          >
+            {/* Ambient shadow */}
+            <path
+              d={path}
+              fill="rgba(0,0,0,0.55)"
+              transform="translate(0,4)"
+              style={{ filter: "blur(7px)", pointerEvents: "none" }}
+            />
+
+            {/* Card fill */}
+            <path
+              d={path}
+              fill={isHov ? "#1e1e1e" : "#141414"}
+              style={{ transition: "fill 0.2s" }}
+            />
+
+            {/* Subtle inner highlight on hover */}
+            {isHov && (
+              <path
+                d={path}
+                fill="none"
+                stroke="rgba(255,107,107,0.08)"
+                strokeWidth="12"
+              />
+            )}
+
+            {/* Border */}
+            <path
+              d={path}
+              fill="none"
+              stroke={isHov ? "rgba(255,107,107,0.6)" : "rgba(255,255,255,0.07)"}
+              strokeWidth={isHov ? 1.5 : 1}
+              style={{ transition: "stroke 0.2s, stroke-width 0.2s" }}
+            />
+
+            {/* Content (clipped) */}
+            <g clipPath={`url(#${uid}-cp-${i})`}>
+              {/* Stars */}
+              {Array.from({ length: 5 }).map((_, si) => {
+                const filled = si < card.stars;
+                const cx = px + 18 + si * 15;
+                const cy = py + 24;
+                const pts = Array.from({ length: 5 }).map((_, k) => {
+                  const a = (k * 4 * Math.PI) / 5 - Math.PI / 2;
+                  return `${cx + 5 * Math.cos(a)},${cy + 5 * Math.sin(a)}`;
+                }).join(" ");
+                return (
+                  <polygon
+                    key={si}
+                    points={pts}
+                    fill={filled ? "#FF6B6B" : "rgba(255,255,255,0.1)"}
+                  />
+                );
+              })}
+
+              {/* Text lines */}
+              {lines.map((ln, li) => (
+                <text
+                  key={li}
+                  x={px + 18}
+                  y={py + 46 + li * (fontSize * 1.6)}
+                  fill={isHov ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.68)"}
+                  fontSize={fontSize}
+                  fontFamily="ui-sans-serif, system-ui, sans-serif"
+                  fontWeight="500"
+                  style={{ transition: "fill 0.2s" }}
+                >
+                  {ln}
+                </text>
+              ))}
+
+              {/* Divider */}
+              <line
+                x1={px + 18} y1={py + ph - 36}
+                x2={px + pw - 18} y2={py + ph - 36}
+                stroke="rgba(255,255,255,0.06)" strokeWidth="1"
+              />
+
+              {/* Name */}
+              <text
+                x={px + 18} y={py + ph - 20}
+                fill="rgba(255,255,255,0.9)"
+                fontSize={10}
+                fontWeight="700"
+                fontFamily="ui-sans-serif, system-ui, sans-serif"
+                letterSpacing="0.4"
+              >
+                {card.name}
+              </text>
+
+              {/* Role */}
+              <text
+                x={px + 18} y={py + ph - 8}
+                fill="#FF6B6B"
+                fontSize={8.5}
+                fontFamily="'Courier New', Courier, monospace"
+                letterSpacing="1.8"
+              >
+                {card.role.toUpperCase()}
+              </text>
+            </g>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+// ─── MARQUEE STRIP ────────────────────────────────────────────────────────────
+function Strip({
+  cards,
+  dir,
+  dur,
+  paused,
+  onHover,
+  onClick,
+  sid,
+}: {
+  cards: CardDef[];
+  dir: "left" | "right";
+  dur: number;
+  paused: boolean;
+  onHover: (v: boolean) => void;
+  onClick: () => void;
+  sid: string;
+}) {
+  return (
+    <div
+      style={{ overflow: "hidden" }}
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
+      onClick={onClick}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "max-content",
+          animation: `${dir === "left" ? "mql" : "mqr"} ${dur}s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
+          willChange: "transform",
+        }}
+      >
+        {[0, 1, 2].map(ci => (
+          <PuzzleGrid key={ci} cards={cards} uid={`${sid}-${ci}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── COMPONENT ────────────────────────────────────────────────────────────────
 export default function Reviews() {
+  const [r1p, setR1p] = useState(false);
+  const [r2p, setR2p] = useState(false);
+  const [r1l, setR1l] = useState(false);
+  const [r2l, setR2l] = useState(false);
+
   return (
     <section className="bg-[#050505] py-32 overflow-hidden relative border-y border-white/5">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#FF6B6B]/10 blur-[150px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[#FF6B6B]/5 blur-[180px] pointer-events-none rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <h2 className="text-[#FF6B6B] text-xs font-mono uppercase tracking-[0.4em] mb-4">
-            Client Verification
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tighter">
+          <p className="text-[#FF6B6B] text-xs font-mono uppercase tracking-[0.4em] mb-4">Client Verification</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
             THE <span className="text-white/40">CONSENSUS</span>
-          </h3>
+          </h2>
         </div>
-        <p className="text-white/50 text-sm max-w-sm md:text-right font-mono">
-          We let the architecture speak for itself. Raw, unfiltered data from
-          our ecosystem partners.
-        </p>
+        <div className="flex flex-col items-end gap-2">
+          <p className="text-white/50 text-sm max-w-xs font-mono text-right">Raw, unfiltered data from our ecosystem partners.</p>
+          <p className="text-white/20 text-[10px] font-mono">hover to pause · click to lock</p>
+        </div>
       </div>
 
-      {/* --- MULTILAYER MASONRY PUZZLE REEL --- */}
-      <div className="relative flex flex-col gap-4 w-full mask-image-edges">
-        {/* REEL 1: Moves Left */}
-        <Marquee speed={40} gradient={false} direction="left">
-          {/* The Grid Container: 6 columns x 2 rows.
-            This mathematically forces the large, tall, wide, and small blocks to interlock perfectly into a solid rectangle.
-          */}
-          <div className="grid grid-cols-6 auto-rows-[160px] gap-4 w-[1600px] mr-4">
-            {ROW_ONE.map((review, i) => (
-              <div
-                key={`r1-${i}`}
-                className={`${review.spanClass} bg-[#111111] border border-white/5 hover:border-[#FF6B6B]/40 hover:bg-[#1a1a1a] rounded-3xl p-6 flex flex-col justify-between shadow-xl transition-all group overflow-hidden`}
-              >
-                <div>
-                  <RenderStars count={review.stars} />
-                  <p className="text-white/80 text-sm leading-relaxed font-medium">
-                    "{review.text}"
-                  </p>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <h4 className="text-white font-bold text-sm tracking-wide">
-                    {review.name}
-                  </h4>
-                  <p className="text-[#FF6B6B] text-[10px] font-mono uppercase tracking-widest mt-1">
-                    {review.role}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Marquee>
-
-        {/* REEL 2: Moves Right */}
-        <Marquee speed={35} gradient={false} direction="right">
-          <div className="grid grid-cols-6 auto-rows-[160px] gap-4 w-[1600px] mr-4">
-            {ROW_TWO.map((review, i) => (
-              <div
-                key={`r2-${i}`}
-                className={`${review.spanClass} bg-[#111111] border border-white/5 hover:border-[#FF6B6B]/40 hover:bg-[#1a1a1a] rounded-3xl p-6 flex flex-col justify-between shadow-xl transition-all group overflow-hidden`}
-              >
-                <div>
-                  <RenderStars count={review.stars} />
-                  <p className="text-white/80 text-sm leading-relaxed font-medium">
-                    "{review.text}"
-                  </p>
-                </div>
-                <div className="mt-4 pt-4 border-t border-white/5">
-                  <h4 className="text-white font-bold text-sm tracking-wide">
-                    {review.name}
-                  </h4>
-                  <p className="text-[#FF6B6B] text-[10px] font-mono uppercase tracking-widest mt-1">
-                    {review.role}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Marquee>
+      <div
+        className="relative flex flex-col w-full"
+        style={{
+          maskImage: "linear-gradient(to right, transparent, black 4%, black 96%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 4%, black 96%, transparent)",
+        }}
+      >
+        <Strip cards={ROW_ONE} dir="left"  dur={58} paused={r1p} sid="r1"
+          onHover={v => { if (!r1l) setR1p(v); }}
+          onClick={() => { const n = !r1l; setR1l(n); setR1p(n); }} />
+        <Strip cards={ROW_TWO} dir="right" dur={72} paused={r2p} sid="r2"
+          onHover={v => { if (!r2l) setR2p(v); }}
+          onClick={() => { const n = !r2l; setR2l(n); setR2p(n); }} />
       </div>
 
-      <style jsx global>{`
-        .mask-image-edges {
-          mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 5%,
-            black 95%,
-            transparent
-          );
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent,
-            black 5%,
-            black 95%,
-            transparent
-          );
+      <style>{`
+        @keyframes mql {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-33.3333%); }
+        }
+        @keyframes mqr {
+          from { transform: translateX(-33.3333%); }
+          to   { transform: translateX(0); }
         }
       `}</style>
     </section>

@@ -51,7 +51,6 @@ export default function Home() {
 
       {/* 5. The Stacking Swipe Cards Component */}
       <AiCards />
-
       {/* REVERTED: Reviews reel is safely moved to Testimonials page */}
       {/* NOTE: No Footer here. layout.tsx handles it globally. */}
     </main>
