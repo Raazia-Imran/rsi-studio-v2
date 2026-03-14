@@ -4,22 +4,6 @@
 
 RSI Studio V2 is a high-ticket agency ecosystem engineered as a **Technical Signal** and **Psychological Filter**. This project abandons traditional grid-based templates in favor of hardware-accelerated SVG physics, cinematic orchestrations, and a mathematically precise UX/UI.
 
----
-
-## 📑 Table of Contents
-
-1. **[Vision & Strategic Philosophy](https://www.google.com/search?q=%23-vision--strategic-philosophy)**
-2. **[Advanced Tech Stack & Engine](https://www.google.com/search?q=%23-advanced-tech-stack--engine)**
-3. **[Core System Architecture](https://www.google.com/search?q=%23-core-system-architecture)**
-4. **[Deep-Dive: SRS Component Validation](https://www.google.com/search?q=%23-deep-dive-srs-component-validation)**
-5. **[The Routing Map (13-Route System)](https://www.google.com/search?q=%23-the-routing-map-13-route-system)**
-6. **[Brand Engineering & UI Tokens](https://www.google.com/search?q=%23-brand-engineering--ui-tokens)**
-7. **[Local Development & Implementation](https://www.google.com/search?q=%23-local-development--implementation)**
-8. **[Professional Handover & Git Workflow](https://www.google.com/search?q=%23-professional-handover--git-workflow)**
-9. **[Academic & Professional Reflection](https://www.google.com/search?q=%23-academic--professional-reflection)**
-
----
-
 ## 🎯 Vision & Strategic Philosophy
 
 The website is architected to deliver an **"Urgency-Free"** experience. Following the **Design Monks** and **Levan Rho** inspirations, the UI prioritizes:
@@ -165,7 +149,8 @@ To maintain architectural integrity, all contributors follow the **Branch-Shield
 RSI Studio V2 represents a successful convergence of **Software Engineering** and **High-End Motion Design**. By strictly adhering to the SRS, the project proves that performance and heavy animation can coexist through efficient SVG rendering and Next.js optimization.
 
 **Status:** `Completed / Production Ready`
-**Lead Engineer:** `Raazia Imran`
+**Lead Engineer:** `Raazia`
+**Team:** `Eman` `Noor`
 **Organization:** `RS International / RSI Studio`
 
 ---
