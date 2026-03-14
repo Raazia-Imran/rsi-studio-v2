@@ -335,39 +335,31 @@ function PortfolioSection() {
    DEVICE SHOWCASE
    ================================================================ */
 
+
 const SCENES = [
   {
-    phone1:  { label: "Web Design",      imageSrc: undefined as string | undefined },
-    laptop1: { label: "Custom Software", imageSrc: undefined as string | undefined },
-    phone2:  { label: "Web development", imageSrc: undefined as string | undefined },
-    laptop2: { label: "Web Automation",  imageSrc: undefined as string | undefined },
-    phone3:  { label: "SEO strategy",   imageSrc: undefined as string | undefined },
-  },
-  {
-    phone1:  { label: "Private Yacht",  imageSrc: undefined as string | undefined },
-    laptop1: { label: "Aviation",       imageSrc: undefined as string | undefined },
-    phone2:  { label: "Startup",        imageSrc: undefined as string | undefined },
-    laptop2: { label: "Real Estate",    imageSrc: undefined as string | undefined },
-    phone3:  { label: "Portfolio",      imageSrc: undefined as string | undefined },
-  },
-  {
-    phone1:  { label: "Finance App",  imageSrc: undefined as string | undefined },
-    laptop1: { label: "Admin Panel",  imageSrc: undefined as string | undefined },
-    phone2:  { label: "Web design",   imageSrc: undefined as string | undefined },
-    laptop2: { label: "Product Site", imageSrc: undefined as string | undefined },
-    phone3:  { label: "Booking UI",   imageSrc: undefined as string | undefined },
-  },
+    phone1:  { label: "Web Design",       imageSrc: undefined as string | undefined },
+    laptop1: { label: "Custom Software",  imageSrc: undefined as string | undefined },
+    phone2:  { label: "Web Development",  imageSrc: undefined as string | undefined },
+    laptop2: { label: "Web Automation",   imageSrc: undefined as string | undefined },
+    phone3:  { label: "SEO Strategy",     imageSrc: undefined as string | undefined },
+    laptop3: { label: "Dashboards",       imageSrc: undefined as string | undefined },
+    phone4:  { label: "Monthly Presence", imageSrc: undefined as string | undefined },
+    laptop4: { label: "Landing Pages",    imageSrc: undefined as string | undefined },
+  }
 ];
 
 function Laptop({ imageSrc, label }: { imageSrc?: string; label?: string }) {
   return (
-    <div style={{ width: "clamp(200px, 28vw, 340px)", flexShrink: 0, position: "relative" }}>
+    <div style={{ width: "clamp(240px, 32vw, 400px)", flexShrink: 0, position: "relative" }}>
       <div style={{ position: "absolute", bottom: -10, left: "10%", right: "10%", height: 30, background: "rgba(0,0,0,0.15)", filter: "blur(18px)", borderRadius: "50%", zIndex: 0 }} />
       <div style={{ position: "relative", zIndex: 1, background: "#0e0e0e", borderRadius: "14px 14px 0 0", border: "2px solid rgba(0,0,0,0.15)", borderBottom: "none", overflow: "hidden", paddingBottom: "63%", boxShadow: "0 -4px 30px rgba(0,0,0,0.12)" }}>
         <div style={{ position: "absolute", top: 6, left: "50%", transform: "translateX(-50%)", width: 6, height: 6, borderRadius: "50%", background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", zIndex: 10 }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 28, background: "#111", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", padding: "0 10px", gap: 6, zIndex: 5 }}>
           <div style={{ display: "flex", gap: 4 }}>
-            {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (<div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.8 }} />))}
+            {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (
+              <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c, opacity: 0.8 }} />
+            ))}
           </div>
           <div style={{ flex: 1, height: 14, background: "rgba(255,255,255,0.06)", borderRadius: 4, marginLeft: 8 }} />
         </div>
@@ -377,11 +369,17 @@ function Laptop({ imageSrc, label }: { imageSrc?: string; label?: string }) {
           ) : (
             <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #141414 0%, #0a0a0a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 24px" }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid rgba(255,107,107,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,107,107,0.6)" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 15-5-5L5 21" /></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,107,107,0.6)" strokeWidth="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="m21 15-5-5L5 21" />
+                </svg>
               </div>
               <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 9, fontFamily: "monospace", textTransform: "uppercase", letterSpacing: "0.15em" }}>{label}</span>
               <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 6 }}>
-                {[100, 80, 60].map((w, i) => (<div key={i} style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 3, width: `${w}%` }} />))}
+                {[100, 80, 60].map((w, i) => (
+                  <div key={i} style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 3, width: `${w}%` }} />
+                ))}
               </div>
             </div>
           )}
@@ -398,7 +396,7 @@ function Laptop({ imageSrc, label }: { imageSrc?: string; label?: string }) {
 
 function Phone({ imageSrc, label }: { imageSrc?: string; label?: string }) {
   return (
-    <div style={{ width: "clamp(60px, 9vw, 110px)", flexShrink: 0, position: "relative", alignSelf: "flex-end", marginBottom: 26 }}>
+    <div style={{ width: "clamp(90px, 13vw, 160px)", flexShrink: 0, position: "relative", alignSelf: "flex-end", marginBottom: 26 }}>
       <div style={{ position: "absolute", bottom: -8, left: "5%", right: "5%", height: 20, background: "rgba(0,0,0,0.12)", filter: "blur(12px)", borderRadius: "50%", zIndex: 0 }} />
       <div style={{ position: "relative", zIndex: 1, background: "#0e0e0e", borderRadius: 28, border: "2px solid rgba(0,0,0,0.15)", overflow: "hidden", paddingBottom: "214%", boxShadow: "0 8px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.04)" }}>
         <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 44, height: 13, borderRadius: 10, background: "#000", zIndex: 10 }} />
@@ -411,11 +409,17 @@ function Phone({ imageSrc, label }: { imageSrc?: string; label?: string }) {
           ) : (
             <div style={{ width: "100%", height: "100%", background: "linear-gradient(to bottom, #141414, #090909)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, padding: "0 10px" }}>
               <div style={{ width: 28, height: 28, borderRadius: 8, border: "1px solid rgba(255,107,107,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,107,107,0.5)" strokeWidth="1.5"><rect x="5" y="2" width="14" height="20" rx="2" /><line x1="9" y1="7" x2="15" y2="7" /><line x1="9" y1="11" x2="15" y2="11" /></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,107,107,0.5)" strokeWidth="1.5">
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <line x1="9" y1="7" x2="15" y2="7" />
+                  <line x1="9" y1="11" x2="15" y2="11" />
+                </svg>
               </div>
               <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 7, fontFamily: "monospace", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center" }}>{label}</span>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 4, width: "100%", padding: "0 4px" }}>
-                {Array.from({ length: 6 }).map((_, i) => (<div key={i} style={{ aspectRatio: "1", borderRadius: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.06)" }} />))}
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <div key={i} style={{ aspectRatio: "1", borderRadius: 8, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.06)" }} />
+                ))}
               </div>
             </div>
           )}
@@ -429,12 +433,15 @@ function Phone({ imageSrc, label }: { imageSrc?: string; label?: string }) {
 
 function DeviceScene({ scene }: { scene: typeof SCENES[0] }) {
   return (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: 12, paddingBottom: 20, paddingLeft: 16, paddingRight: 16 }}>
-      <Phone label={scene.phone1.label} imageSrc={scene.phone1.imageSrc} />
+    <div style={{ display: "flex", alignItems: "flex-end", gap: 24, paddingBottom: 20, paddingLeft: 16, paddingRight: 16 }}>
+      <Phone  label={scene.phone1.label}  imageSrc={scene.phone1.imageSrc} />
       <Laptop label={scene.laptop1.label} imageSrc={scene.laptop1.imageSrc} />
-      <Phone label={scene.phone2.label} imageSrc={scene.phone2.imageSrc} />
+      <Phone  label={scene.phone2.label}  imageSrc={scene.phone2.imageSrc} />
       <Laptop label={scene.laptop2.label} imageSrc={scene.laptop2.imageSrc} />
-      <Phone label={scene.phone3.label} imageSrc={scene.phone3.imageSrc} />
+      <Phone  label={scene.phone3.label}  imageSrc={scene.phone3.imageSrc} />
+      <Laptop label={scene.laptop3.label} imageSrc={scene.laptop3.imageSrc} />
+      <Phone  label={scene.phone4.label}  imageSrc={scene.phone4.imageSrc} />
+      <Laptop label={scene.laptop4.label} imageSrc={scene.laptop4.imageSrc} />
     </div>
   );
 }
@@ -463,23 +470,34 @@ function DeviceShowcase() {
       <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 900, height: 500, background: "rgba(255,107,107,0.06)", filter: "blur(150px)", borderRadius: "50%", pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: "0 auto 0 0", width: "clamp(40px, 8vw, 200px)", background: "linear-gradient(to right, #ffffff, transparent)", zIndex: 20, pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: "0 0 0 auto", width: "clamp(40px, 8vw, 200px)", background: "linear-gradient(to left, #ffffff, transparent)", zIndex: 20, pointerEvents: "none" }} />
+
       <div className="text-center relative z-10 px-4" style={{ marginBottom: "clamp(24px,4vw,48px)" }}>
-      <p className="text-[#FF6B6B] text-[10px] font-mono uppercase tracking-[0.6em] mb-4">Selected Works</p>
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tighter" style={{ color: "#111", margin: 0 }}>
-    BUILT BY <span style={{ color: "#FF6B6B" }}>RSI</span>
-  </h2>
-</div>
+        <p className="text-[#FF6B6B] text-[10px] font-mono uppercase tracking-[0.6em] mb-4">Selected Works</p>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tighter" style={{ color: "#111", margin: 0 }}>
+          BUILT BY <span style={{ color: "#FF6B6B" }}>RSI</span>
+        </h2>
+      </div>
+
       <TagRow tags={TAGS_TOP} dir="left" speed={30} />
-      <div style={{ overflow: "hidden", position: "relative", zIndex: 10, padding: "40px 0" }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-        <div style={{ display: "flex", width: "max-content", animation: "deviceScroll 50s linear infinite", animationPlayState: paused ? "paused" : "running" }}>
-          {[0, 1, 2].map((copy) => SCENES.map((scene, i) => (<DeviceScene key={`${copy}-${i}`} scene={scene} />)))}
+
+      <div
+        style={{ overflow: "hidden", position: "relative", zIndex: 10, padding: "40px 0" }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div style={{ display: "flex", width: "max-content", animation: "deviceScroll 60s linear infinite", animationPlayState: paused ? "paused" : "running" }}>
+          {[0, 1, 2].map((copy) =>
+            SCENES.map((scene, i) => <DeviceScene key={`${copy}-${i}`} scene={scene} />)
+          )}
         </div>
       </div>
+
       <TagRow tags={TAGS_BOT} dir="right" speed={35} />
+
       <style>{`
-        @keyframes tagL        { from { transform: translateX(0); }           to { transform: translateX(-33.333%); } }
-        @keyframes tagR        { from { transform: translateX(-33.333%); }    to { transform: translateX(0); } }
-        @keyframes deviceScroll{ from { transform: translateX(0); }           to { transform: translateX(-33.333333%); } }
+        @keyframes tagL         { from { transform: translateX(0); }         to { transform: translateX(-33.333%); } }
+        @keyframes tagR         { from { transform: translateX(-33.333%); }  to { transform: translateX(0); } }
+        @keyframes deviceScroll { from { transform: translateX(0); }         to { transform: translateX(-33.333333%); } }
       `}</style>
     </section>
   );

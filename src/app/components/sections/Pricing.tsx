@@ -47,9 +47,9 @@ export default function PricingSection() {
 
             <ul className="space-y-4 mb-8">
               {[
-                "Custom Homepage Design",
-                "Responsive Layout",
-                "Basic SEO Setup",
+                "Up to 12-page wwebsite",
+                "Custom built theme(no templates)",
+                "Brand philosphy alignment",
                 "Contact Form Integration",
               ].map((feature, index) => (
                 <li key={index} className="flex items-center gap-3">
