@@ -365,7 +365,7 @@ function Laptop({ imageSrc, label }: { imageSrc?: string; label?: string }) {
         </div>
         <div style={{ position: "absolute", inset: 0, top: 28 }}>
           {imageSrc ? (
-            <img src={imageSrc} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+           <img src={imageSrc} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
           ) : (
             <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #141414 0%, #0a0a0a 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10, padding: "0 24px" }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, border: "1px solid rgba(255,107,107,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -434,14 +434,14 @@ function Phone({ imageSrc, label }: { imageSrc?: string; label?: string }) {
 function DeviceScene({ scene }: { scene: typeof SCENES[0] }) {
   return (
     <div style={{ display: "flex", alignItems: "flex-end", gap: 24, paddingBottom: 20, paddingLeft: 16, paddingRight: 16 }}>
-      <Phone  label={scene.phone1.label}  imageSrc={scene.phone1.imageSrc} />
-      <Laptop label={scene.laptop1.label} imageSrc={scene.laptop1.imageSrc} />
+      <Phone  label={scene.phone1.label}  imageSrc="/educational.png" />
+      <Laptop label={scene.laptop1.label} imageSrc="/Laptop1.png" />
       <Phone  label={scene.phone2.label}  imageSrc={scene.phone2.imageSrc} />
-      <Laptop label={scene.laptop2.label} imageSrc={scene.laptop2.imageSrc} />
+      <Laptop label={scene.laptop2.label} imageSrc="/yacht.png" />
       <Phone  label={scene.phone3.label}  imageSrc={scene.phone3.imageSrc} />
-      <Laptop label={scene.laptop3.label} imageSrc={scene.laptop3.imageSrc} />
+      <Laptop label={scene.laptop3.label} imageSrc="/healthcare.jpeg" />
       <Phone  label={scene.phone4.label}  imageSrc={scene.phone4.imageSrc} />
-      <Laptop label={scene.laptop4.label} imageSrc={scene.laptop4.imageSrc} />
+      <Laptop label={scene.laptop4.label} imageSrc="/Laptop4.png" />
     </div>
   );
 }
